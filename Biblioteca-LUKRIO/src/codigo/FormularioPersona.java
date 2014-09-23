@@ -154,8 +154,68 @@ public class FormularioPersona implements MouseListener{
 	}
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==registrarPersona){
-			refrescarSeleccion("estudiante");
-		}else if(seleccionarEstudiante.isSelected()){
+			//Comprobamos que los campos de texto hayan sido modificados y no esten vacios.
+			if(entradaNombre.getText().equals("Introduce el nombre")==false && entradaNombre.getText().equals("")==false &&
+				entradaApellido1.getText().equals("Introduce el primer apellido")==false && entradaApellido1.getText().equals("")==false &&
+				entradaApellido2.getText().equals("Introduce el segundo apellido")==false && entradaApellido2.getText().equals("")==false &&
+				entradaCorreo.getText().equals("Introduce el correo")==false && entradaApellido2.getText().equals("")==false &&
+				entradaTelefono.getText().equals("Introduce el teléfono")==false && entradaApellido2.getText().equals("")==false &&
+				entradaNombre.getText().length()<11 && entradaApellido1.getText().length()<11 && entradaApellido2.getText().length()<11 &&
+				entradaTelefono.getText().length()==8){
+				//Comprobamos que el teléfono sea un número
+				if(compruebaTelefono(entradaTelefono.getText())){
+					//Se observa la selección escogida (tipo de persona) y se crea una nueva clase de este para implementarlo
+					//en la lista de clases de su tipo.
+					if(tipoSeleccion=="estudiante"){
+						if(entradaEspecial.getText().equals("Introduce la institución")==false && entradaEspecial.getText().equals("")==false){
+							BibliotecaLUKRIO.estudiantes.add(new Estudiante(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
+									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
+							Component frame = null;
+							visibilidad(false);
+							refrescarFormulario();
+							BibliotecaLUKRIO.carnet++;
+							JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
+						}else{
+							Component frame = null;
+							JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos");
+						}
+					}
+					else if(tipoSeleccion=="colega"){
+						if(entradaEspecial.getText().equals("Introduce el puesto")==false && entradaEspecial.getText().equals("")==false){
+							BibliotecaLUKRIO.colegas.add(new Colega(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
+							Component frame = null;
+							visibilidad(false);
+							refrescarFormulario();
+							BibliotecaLUKRIO.carnet++;
+							JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
+						}else{
+							Component frame = null;
+							JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos");
+						}
+					}
+					else{
+						if(entradaEspecial.getText().equals("Introduce el parentesco")==false && entradaEspecial.getText().equals("")==false){
+							BibliotecaLUKRIO.familiares.add(new Familiar(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
+							Component frame = null;
+							visibilidad(false);
+							refrescarFormulario();
+							BibliotecaLUKRIO.carnet++;
+							JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
+						}else{
+							Component frame = null;
+							JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos");
+						}
+					}
+				}else{
+					Component frame = null;
+					JOptionPane.showMessageDialog(frame,"Por favor digite un número de teléfono válido");
+				}
+			}else{
+				Component frame = null;
+				JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos, recuerde que deben tener menos de 10 caracteres y el correo menos de 15 y el teléfono 8 dígitos");
+			}
+		}
+		else if(seleccionarEstudiante.isSelected()){
 			refrescarSeleccion("estudiante");
 		}
 		else if(seleccionarColega.isSelected()){

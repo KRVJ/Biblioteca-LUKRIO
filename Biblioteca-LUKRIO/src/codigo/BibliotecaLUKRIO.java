@@ -2,68 +2,40 @@ package codigo;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import persona.Colega;
+import persona.Estudiante;
+import persona.Familiar;
+import articulo.Libro;
+import articulo.Pelicula;
+import articulo.Revista;
+
 public class BibliotecaLUKRIO implements MouseListener {
+	public static ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
+	public static ArrayList<Colega> colegas = new ArrayList<Colega>();
+	public static ArrayList<Familiar> familiares = new ArrayList<Familiar>();
+	
+	public static ArrayList<Libro>libros=new ArrayList<Libro>();
+	public static ArrayList<Pelicula>peliculas=new ArrayList<Pelicula>();
+	public static ArrayList<Revista>revistas=new ArrayList<Revista>();
+	
+	static int carnet=0;
 	//Fecha fecha = new Fecha();
-	JFrame vPrincipal,vRegistrarPersonas,vConsultarPersonas,vConsultarPersPrestamos,vRescientes,
-	vRegistrarArticulo,vConsultarArticulos,vConsultarArtPrestamos;
+	JFrame vPrincipal;
+	FormularioPersona formulario = new FormularioPersona();
 	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bActividadesRecientes,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
 	BibliotecaLUKRIO(){
-		creaVentanas();
-		creaBotones();
-		vPrincipal.setVisible(true);
-		vRegistrarPersonas.setVisible(false);
-		vConsultarPersonas.setVisible(false);
-		vConsultarPersPrestamos.setVisible(false);
-		vRescientes.setVisible(false);
-		vRegistrarArticulo.setVisible(false);
-		vConsultarArticulos.setVisible(false);
-		vConsultarArtPrestamos.setVisible(false);
-	}
-	public void creaVentanas(){
-		vPrincipal=new JFrame();
+        vPrincipal=new JFrame();
 		vPrincipal.setBounds(400,100,600,360);
 		vPrincipal.setLayout(null);
 		vPrincipal.setTitle("Biblioteca LUKRIO");
-		
-		vRegistrarPersonas=new JFrame();
-		vRegistrarPersonas.setBounds(300,100,400,300);
-		vRegistrarPersonas.setLayout(null);
-		vRegistrarPersonas.setTitle("Registrar Persona");
-		
-		vConsultarPersonas=new JFrame();
-		vConsultarPersonas.setBounds(100,50,500,400);
-		vConsultarPersonas.setLayout(null);
-		vConsultarPersonas.setTitle("Consultar Personas");
-		
-		vConsultarPersPrestamos=new JFrame();
-		vConsultarPersPrestamos.setBounds(100,50,500,400);
-		vConsultarPersPrestamos.setLayout(null);
-		vConsultarPersPrestamos.setTitle("Personas con artítulos prestados");
-		
-		vRescientes=new JFrame();
-		vRescientes.setBounds(200,50,400,400);
-		vRescientes.setLayout(null);
-		vRescientes.setTitle("Cambios Rescientes");
-		
-		vRegistrarArticulo=new JFrame();
-		vRegistrarArticulo.setBounds(300,100,400,300);
-		vRegistrarArticulo.setLayout(null);
-		vRegistrarArticulo.setTitle("Registrar Articulo");
-		
-		vConsultarArticulos=new JFrame();
-		vConsultarArticulos.setBounds(100,50,500,400);
-		vConsultarArticulos.setLayout(null);
-		vConsultarArticulos.setTitle("Consultar Articulos");
-		
-		vConsultarArtPrestamos=new JFrame();
-		vConsultarArtPrestamos.setBounds(100,50,500,400);
-		vConsultarArtPrestamos.setLayout(null);
-		vConsultarArtPrestamos.setTitle("Consultar Artículos Prestados");
-	}
+        creaBotones();
+        vPrincipal.setVisible(true);
+	}		
 	public void creaBotones(){
 		bRegistrarPersonas=new JButton();
 		bConsultarPersonas=new JButton();
