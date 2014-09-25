@@ -9,23 +9,25 @@ import javax.swing.*;
 import persona.Colega;
 import persona.Estudiante;
 import persona.Familiar;
+import persona.Persona;
+import articulo.Articulo;
 import articulo.Libro;
 import articulo.Pelicula;
 import articulo.Revista;
 
 public class BibliotecaLUKRIO implements MouseListener {
-	public static ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
-	public static ArrayList<Colega> colegas = new ArrayList<Colega>();
-	public static ArrayList<Familiar> familiares = new ArrayList<Familiar>();
-	
-	public static ArrayList<Libro>libros=new ArrayList<Libro>();
-	public static ArrayList<Pelicula>peliculas=new ArrayList<Pelicula>();
-	public static ArrayList<Revista>revistas=new ArrayList<Revista>();
-	
-	static int carnet=0;
+	//if(personas.get(0).getTipo()=="Colega"){
+	//((Colega)personas.get(0)).getPuesto();
+	//((Estudiante)personas.get(0)).getNombre();
+	//((Familiar)personas.get(0)).getNombre();
+	//}
+	public static ArrayList<Persona> personas = new ArrayList<Persona>();
+	public static ArrayList<Articulo>articulos=new ArrayList<Articulo>();
+	static int carnet=20140000;
 	//Fecha fecha = new Fecha();
 	JFrame vPrincipal;
 	FormularioPersona formulario = new FormularioPersona();
+	ConsultarPersonas consultarPersonas=new ConsultarPersonas();
 	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bActividadesRecientes,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
 	BibliotecaLUKRIO(){
@@ -34,8 +36,9 @@ public class BibliotecaLUKRIO implements MouseListener {
 		vPrincipal.setLayout(null);
 		vPrincipal.setTitle("Biblioteca LUKRIO");
         creaBotones();
+        vPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vPrincipal.setVisible(true);
-	}		
+	}
 	public void creaBotones(){
 		bRegistrarPersonas=new JButton();
 		bConsultarPersonas=new JButton();
@@ -96,8 +99,12 @@ public class BibliotecaLUKRIO implements MouseListener {
         BibliotecaLUKRIO biblioteca=new BibliotecaLUKRIO();
     }
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent e) {
+		if(e.getSource()==bRegistrarPersonas){
+			formulario.formulario.setVisible(true);
+		}else if(e.getSource()==bConsultarPersonas){
+			consultarPersonas.ventanaConsultas.setVisible(true);
+		}
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {

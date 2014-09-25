@@ -45,13 +45,10 @@ public class FormularioPersona implements MouseListener{
 		formulario.setLocation(450,145);  //localizacion de ventana
 		formulario.setResizable(false);  //Minimizar ventana
 		creaInterfazFormulario();
-		ImageIcon imagen = new ImageIcon(formulario.getClass().getResource("/imagenes/fondoFormulario.jpg")); //Localidad dentro del programa
-		ImagenFondo fondo = new ImagenFondo(imagen.getImage());
-		formulario.getContentPane().add(fondo);
+		//ImageIcon imagen = new ImageIcon(formulario.getClass().getResource("/imagenes/fondoFormulario.jpg")); //Localidad dentro del programa
+		//ImagenFondo fondo = new ImagenFondo(imagen.getImage());
+		//formulario.getContentPane().add(fondo);
 		formulario.setVisible(false);   //Oculta la ventana
-	}
-	public void visibilidad(boolean visible){
-		formulario.setVisible(visible);
 	}
 	//Crea toda la interfaz del formulario
 	public void creaInterfazFormulario(){
@@ -161,51 +158,25 @@ public class FormularioPersona implements MouseListener{
 				entradaCorreo.getText().equals("Introduce el correo")==false && entradaApellido2.getText().equals("")==false &&
 				entradaTelefono.getText().equals("Introduce el teléfono")==false && entradaApellido2.getText().equals("")==false &&
 				entradaNombre.getText().length()<11 && entradaApellido1.getText().length()<11 && entradaApellido2.getText().length()<11 &&
-				entradaTelefono.getText().length()==8){
+				entradaTelefono.getText().length()==8 && entradaEspecial.getText().equals("")==false && entradaEspecial.getText().equals("Introduce la institución")==false &&
+				entradaEspecial.getText().equals("Introduce el parentesco")==false && entradaEspecial.getText().equals("Introduce el puesto")==false){
 				//Comprobamos que el teléfono sea un número
 				if(compruebaTelefono(entradaTelefono.getText())){
-					//Se observa la selección escogida (tipo de persona) y se crea una nueva clase de este para implementarlo
-					//en la lista de clases de su tipo.
-					if(tipoSeleccion=="estudiante"){
-						if(entradaEspecial.getText().equals("Introduce la institución")==false && entradaEspecial.getText().equals("")==false){
-							BibliotecaLUKRIO.estudiantes.add(new Estudiante(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
-									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
-							Component frame = null;
-							visibilidad(false);
-							refrescarFormulario();
-							BibliotecaLUKRIO.carnet++;
-							JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
+						if(tipoSeleccion=="estudiante"){
+						BibliotecaLUKRIO.personas.add(new Estudiante(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
+								entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet,tipoSeleccion));
+						}else if(tipoSeleccion=="colega"){
+							BibliotecaLUKRIO.personas.add(new Colega(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
+									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet,tipoSeleccion));
 						}else{
-							Component frame = null;
-							JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos");
+							BibliotecaLUKRIO.personas.add(new Familiar(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
+									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet,tipoSeleccion));
 						}
-					}
-					else if(tipoSeleccion=="colega"){
-						if(entradaEspecial.getText().equals("Introduce el puesto")==false && entradaEspecial.getText().equals("")==false){
-							BibliotecaLUKRIO.colegas.add(new Colega(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
-							Component frame = null;
-							visibilidad(false);
-							refrescarFormulario();
-							BibliotecaLUKRIO.carnet++;
-							JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
-						}else{
-							Component frame = null;
-							JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos");
-						}
-					}
-					else{
-						if(entradaEspecial.getText().equals("Introduce el parentesco")==false && entradaEspecial.getText().equals("")==false){
-							BibliotecaLUKRIO.familiares.add(new Familiar(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
-							Component frame = null;
-							visibilidad(false);
-							refrescarFormulario();
-							BibliotecaLUKRIO.carnet++;
-							JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
-						}else{
-							Component frame = null;
-							JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos");
-						}
-					}
+						Component frame = null;
+						formulario.setVisible(false);
+						refrescarFormulario();
+						BibliotecaLUKRIO.carnet++;
+						JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
 				}else{
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame,"Por favor digite un número de teléfono válido");

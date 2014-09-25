@@ -2,7 +2,7 @@ package persona;
 
 public class Colega extends Persona {
 	private String puesto;
-	public Colega(String pNombre, String pApellido1,String pApellido2, String pTelefono, String pCorreo, String pPuesto,int pNumCarnet) {
+	public Colega(String pNombre, String pApellido1,String pApellido2, String pTelefono, String pCorreo, String pPuesto,int pNumCarnet,String pTipo) {
 		setCarnet(pNumCarnet);
 		setNombre(pNombre);
 	    setApellido1(pApellido1);
@@ -10,6 +10,7 @@ public class Colega extends Persona {
 	    setTelefono(pTelefono);
 	    setCorreo(pCorreo);
 	    setPuesto(pPuesto);
+	    setTipo(pTipo);
 	}
 	public void setPuesto(String puesto){
 		this.puesto=puesto;

@@ -7,9 +7,16 @@ public class Persona{
   private String apellido2;
   private String telefono;
   private String correo;
+  private String tipoSeleccion;
   public Persona (){
   	}
   //Setters y getters que comparten las subClases que heredan de Persona.
+  public void setTipo(String tipoSeleccion){
+	  this.tipoSeleccion=tipoSeleccion;
+  }
+  public String getTipo(){
+	  return tipoSeleccion;
+  }
   public void setCarnet(int numeroCarnet){
 	  this.numeroCarnet=numeroCarnet;
   }
