@@ -2,7 +2,7 @@ package persona;
 
 public class Familiar extends Persona {
 	public String parentesco;
-	public Familiar(String pNombre, String pApellido1,String pApellido2, String pTelefono, String pCorreo, String pParentesco, int pNumCarnet,String pTipo) {
+	public Familiar(String pNombre, String pApellido1,String pApellido2, String pTelefono, String pCorreo, String pParentesco, int pNumCarnet){
 		setCarnet(pNumCarnet);
 		setNombre(pNombre);
 	    setApellido1(pApellido1);
@@ -10,7 +10,7 @@ public class Familiar extends Persona {
 	    setTelefono(pTelefono);
 	    setCorreo(pCorreo);
 	    setParentesco(pParentesco);
-	    setTipo(pTipo);
+	    setTipo("familiar");
 	}
 	public void setParentesco(String parentesco){
 		this.parentesco=parentesco;

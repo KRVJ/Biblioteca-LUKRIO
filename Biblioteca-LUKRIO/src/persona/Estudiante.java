@@ -3,7 +3,7 @@ package persona;
 public class Estudiante extends Persona {
 	private String institucion;
 	//Constructor con los valores correspondientes para iniciar la clase Estudiante.
-	public Estudiante(String pNombre, String pApellido1,String pApellido2, String pTelefono, String pCorreo, String pInstitucion,int pNumCarnet,String pTipo) {
+	public Estudiante(String pNombre, String pApellido1,String pApellido2, String pTelefono, String pCorreo, String pInstitucion,int pNumCarnet){
 		setCarnet(pNumCarnet);
 		setNombre(pNombre);
 	    setApellido1(pApellido1);
@@ -11,7 +11,7 @@ public class Estudiante extends Persona {
 	    setTelefono(pTelefono);
 	    setCorreo(pCorreo);
 	    setInstitucion(pInstitucion);
-	    setTipo(pTipo);
+	    setTipo("estudiante");
 	}
 	public void setInstitucion(String institucion){
 		this.institucion=institucion;
