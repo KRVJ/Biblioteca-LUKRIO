@@ -48,7 +48,7 @@ public class ConsultarPersonas implements MouseListener{
 		table.addMouseListener(this);  
 		
 		JScrollPane scrollPane=new JScrollPane(table);
-		scrollPane.setBounds(10,40,900,450);
+		scrollPane.setBounds(10,40,970,470);
 		ventanaConsultas.add(scrollPane);
 		
 		crearInterfazConsultar();
@@ -162,14 +162,13 @@ public class ConsultarPersonas implements MouseListener{
 					if(bEspecial.equals("si") && entradaEspecial.getText().equals((((Estudiante)BibliotecaLUKRIO.personas.get(i)).getInstitucion()))==false){
 						imprimo="no";}
 					if(imprimo.equals("si")){
-						Object[] libro = new Object[]{((Estudiante)BibliotecaLUKRIO.personas.get(i)).getCarnet(),((Estudiante)BibliotecaLUKRIO.personas.get(i)).getNombre(),
+						Object[] persona = new Object[]{((Estudiante)BibliotecaLUKRIO.personas.get(i)).getCarnet(),((Estudiante)BibliotecaLUKRIO.personas.get(i)).getNombre(),
 								((Estudiante)BibliotecaLUKRIO.personas.get(i)).getApellido1(),
 								((Estudiante)BibliotecaLUKRIO.personas.get(i)).getApellido2(),
 								((Estudiante)BibliotecaLUKRIO.personas.get(i)).getCorreo(),
 								((Estudiante)BibliotecaLUKRIO.personas.get(i)).getTelefono(),
 								((Estudiante)BibliotecaLUKRIO.personas.get(i)).getInstitucion(),};
-						tabla.addRow(libro);
-						personasEncontradas+=((Estudiante)BibliotecaLUKRIO.personas.get(i)).consulta()+"\n";
+						tabla.addRow(persona);
 					}
 				}
 			}
@@ -196,14 +195,13 @@ public class ConsultarPersonas implements MouseListener{
 					if(bEspecial.equals("si") && entradaEspecial.getText().equals((((Colega)BibliotecaLUKRIO.personas.get(i)).getPuesto()))==false){
 						imprimo="no";}
 					if(imprimo.equals("si")){
-						Object[] libro = new Object[]{((Colega)BibliotecaLUKRIO.personas.get(i)).getCarnet(),((Colega)BibliotecaLUKRIO.personas.get(i)).getNombre(),
+						Object[] persona = new Object[]{((Colega)BibliotecaLUKRIO.personas.get(i)).getCarnet(),((Colega)BibliotecaLUKRIO.personas.get(i)).getNombre(),
 								((Colega)BibliotecaLUKRIO.personas.get(i)).getApellido1(),
 								((Colega)BibliotecaLUKRIO.personas.get(i)).getApellido2(),
 								((Colega)BibliotecaLUKRIO.personas.get(i)).getCorreo(),
 								((Colega)BibliotecaLUKRIO.personas.get(i)).getTelefono(),
 								((Colega)BibliotecaLUKRIO.personas.get(i)).getPuesto(),};
-						tabla.addRow(libro);
-						personasEncontradas+=((Estudiante)BibliotecaLUKRIO.personas.get(i)).consulta()+"\n";
+						tabla.addRow(persona);
 					}
 				}
 			}
@@ -229,14 +227,13 @@ public class ConsultarPersonas implements MouseListener{
 					if(bEspecial.equals("si") && entradaEspecial.getText().equals((((Familiar)BibliotecaLUKRIO.personas.get(i)).getParentesco()))==false){
 						imprimo="no";}
 					if(imprimo.equals("si")){
-						Object[] libro = new Object[]{((Familiar)BibliotecaLUKRIO.personas.get(i)).getCarnet(),((Familiar)BibliotecaLUKRIO.personas.get(i)).getNombre(),
+						Object[] persona = new Object[]{((Familiar)BibliotecaLUKRIO.personas.get(i)).getCarnet(),((Familiar)BibliotecaLUKRIO.personas.get(i)).getNombre(),
 								((Familiar)BibliotecaLUKRIO.personas.get(i)).getApellido1(),
 								((Familiar)BibliotecaLUKRIO.personas.get(i)).getApellido2(),
 								((Familiar)BibliotecaLUKRIO.personas.get(i)).getCorreo(),
 								((Familiar)BibliotecaLUKRIO.personas.get(i)).getTelefono(),
 								((Familiar)BibliotecaLUKRIO.personas.get(i)).getParentesco(),};
-						tabla.addRow(libro);
-						personasEncontradas+=((Estudiante)BibliotecaLUKRIO.personas.get(i)).consulta()+"\n";
+						tabla.addRow(persona);
 					}
 				}
 			}
@@ -247,6 +244,7 @@ public class ConsultarPersonas implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==buscarPersonas){
+			reiniciaTabla();
 			refrescarBusqueda(tipoBusqueda);
 		}else if(seleccionarEstudiante.isSelected()){
 			entradaEspecial.setText("Institución");

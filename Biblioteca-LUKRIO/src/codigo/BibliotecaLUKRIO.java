@@ -2,6 +2,7 @@ package codigo;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -26,8 +27,11 @@ public class BibliotecaLUKRIO implements MouseListener {
 	static int carnet=20140000;
 	//Fecha fecha = new Fecha();
 	JFrame vPrincipal;
+	
 	FormularioPersona formulario = new FormularioPersona();
 	ConsultarPersonas consultarPersonas=new ConsultarPersonas();
+	CargarPersonas cargarPersonas = new CargarPersonas();
+	 
 	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bActividadesRecientes,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
 	BibliotecaLUKRIO(){
@@ -104,6 +108,13 @@ public class BibliotecaLUKRIO implements MouseListener {
 			formulario.formulario.setVisible(true);
 		}else if(e.getSource()==bConsultarPersonas){
 			consultarPersonas.ventanaConsultas.setVisible(true);
+		}else if(e.getSource()==bCargarPersonas){
+			try {
+				cargarPersonas.cargar();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	@Override
