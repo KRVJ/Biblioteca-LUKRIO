@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -24,6 +25,8 @@ import persona.Colega;
 import persona.Estudiante;
 import persona.Familiar;
 import articulo.Libro;
+import articulo.Pelicula;
+import articulo.Revista;
 
 public class ConsultarArticulos implements MouseListener{
 	static JFrame ventanaArticulos=new JFrame();
@@ -34,7 +37,7 @@ public class ConsultarArticulos implements MouseListener{
 	JButton botonReiniciar,botonPrestar;
 	static JButton prestarArticulo;;
 	static JRadioButton seleccionarLibro = new JRadioButton("Libros");
-    JRadioButton seleccionarPelicula = new JRadioButton("PelÌculas");
+    JRadioButton seleccionarPelicula = new JRadioButton("Pel√≠culas");
     JRadioButton seleccionarRevista = new JRadioButton("Revistas");
     
     static Frame ventanaPrestarDevolver=new JFrame();
@@ -55,8 +58,8 @@ public class ConsultarArticulos implements MouseListener{
 		prestarArticulo.addMouseListener(this);
 		
 		ventanaArticulos.setLayout(null);
-		ventanaArticulos.setTitle("Consultar ¡rticulos");  //Titulo de ventana
-		ventanaArticulos.setSize(900,580);       //TamaÒo de ventana
+		ventanaArticulos.setTitle("Consultar √Årticulos");  //Titulo de ventana
+		ventanaArticulos.setSize(900,580);       //Tama√±o de ventana
 		ventanaArticulos.setLocation(240,80);  //localizacion de ventana
 		ventanaArticulos.setResizable(false);  //Minimizar ventana
 		ventanaArticulos.setVisible(false);   //Oculta la ventana
@@ -120,7 +123,7 @@ public class ConsultarArticulos implements MouseListener{
 		seleccionarLibro.setSelected(true);
         ventanaArticulos.add(seleccionarLibro);
         
-        seleccionarPelicula.setActionCommand("PelÌculas");
+        seleccionarPelicula.setActionCommand("Pel√≠culas");
         seleccionarPelicula.addMouseListener(this);
         seleccionarPelicula.setBounds(110,10,100,20);
         ventanaArticulos.add(seleccionarPelicula);
@@ -137,18 +140,33 @@ public class ConsultarArticulos implements MouseListener{
 	public void setValoresTabla(String busqueda){
 		reiniciaTabla();
 		if(busqueda=="Libros"){
-			for(Libro i:Interfaz.libros){
-				Object[] libro = new Object[]{i.getTitulo(),i.getAutorProductor(),i.getEdicion(),i.getEditorial()};
+			for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
+				if(BibliotecaLUKRIO.articulos.get(i).getTipo()=="libro"){
+				Object[] libro = new Object[]{((Libro)BibliotecaLUKRIO.articulos.get(i)).getTitulo(),((Libro)BibliotecaLUKRIO.articulos.get(i)).getAutorProductor(),((Libro)BibliotecaLUKRIO.articulos.get(i)).getEdicion(),
+						((Libro)BibliotecaLUKRIO.articulos.get(i)).getEditorial()};
 				tabla.addRow(libro);
+				}
 			}
 		}else if(busqueda=="Peliculas"){
-			tabla.addRow(new Object[]{"1","2","3","4"});
+			for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
+				if(BibliotecaLUKRIO.articulos.get(i).getTipo()=="pelicula"){
+				Object[] libro = new Object[]{((Pelicula)BibliotecaLUKRIO.articulos.get(i)).getTitulo(),((Pelicula)BibliotecaLUKRIO.articulos.get(i)).getAutorProductor(),((Pelicula)BibliotecaLUKRIO.articulos.get(i)).getEdicion(),
+						((Pelicula)BibliotecaLUKRIO.articulos.get(i)).getEditorial()};
+				tabla.addRow(libro);
+				}
+			}
 		}else{
-			
+			for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
+				if(BibliotecaLUKRIO.articulos.get(i).getTipo()=="pelicula"){
+				Object[] libro = new Object[]{((Revista)BibliotecaLUKRIO.articulos.get(i)).getTitulo(),((Revista)BibliotecaLUKRIO.articulos.get(i)).getAutorProductor(),((Revista)BibliotecaLUKRIO.articulos.get(i)).getEdicion(),
+						((Revista)BibliotecaLUKRIO.articulos.get(i)).getEditorial()};
+				tabla.addRow(libro);
+				}
+			}
 		}
 	}
 	public void modificarColumnas(String caracteristicaA,String caracteristicaB){
-		//tabla.setColumnIdentifiers(Object[]{"TÌtulo","Autor",a,b});
+		//tabla.setColumnIdentifiers(Object[]{"T√≠tulo","Autor",a,b});
 	}
 	public void reiniciaTabla(){
 		while(tabla.getRowCount()!=0){
@@ -159,14 +177,14 @@ public class ConsultarArticulos implements MouseListener{
 		if (posicionArticulo!=-1){
 			if(seleccionarLibro.isSelected()){
 				System.out.println("Mostrando Portada");
-				if(Interfaz.libros.get(posicionArticulo).getPrestado()){
-					System.out.println(Interfaz.libros.get(posicionArticulo).getPrestado()+"  tITULO"+Interfaz.libros.get(posicionArticulo).getTitulo());
+				if(BibliotecaLUKRIO.articulos.get(posicionArticulo).getPrestado()){
+					System.out.println(BibliotecaLUKRIO.articulos.get(posicionArticulo).getPrestado()+"  tITULO"+BibliotecaLUKRIO.articulos.get(posicionArticulo).getTitulo());
 		        	prestarArticulo.setText("Devolver");
 		        }else{
-		        	System.out.println("SIN PRESTAR"+Interfaz.libros.get(posicionArticulo).getPrestado()+"  tITULO"+Interfaz.libros.get(posicionArticulo).getTitulo());
+		        	System.out.println("SIN PRESTAR"+BibliotecaLUKRIO.articulos.get(posicionArticulo).getPrestado()+"  tITULO"+BibliotecaLUKRIO.articulos.get(posicionArticulo).getTitulo());
 		        	prestarArticulo.setText("Prestar");
 		        }
-				ImageIcon icon = Interfaz.libros.get(posicionArticulo).getPortada();
+				ImageIcon icon = BibliotecaLUKRIO.articulos.get(posicionArticulo).getPortada();
 		        label.setIcon(icon);
 		        System.out.println("Se brinco el else");
 		        ventanaArticulos.setVisible(false);
@@ -174,7 +192,7 @@ public class ConsultarArticulos implements MouseListener{
 			}
 		}
 	}
-	public void prestarArticulo(int numeroCarnet,String tipo){
+	/*public void prestarArticulo(int numeroCarnet,String tipo){
 		if(Interfaz.libros.get(table.getSelectedRow()).getPrestado()==false){
 			boolean existePersona=false;
 			if(tipo.equals("Estudiante")){
@@ -204,7 +222,7 @@ public class ConsultarArticulos implements MouseListener{
 				prestarArticulo.setText("Devolver");
 			}else{
 				Component frame=null;
-				JOptionPane.showMessageDialog(frame,"El n˙mero de carnet: "+numeroCarnet+" no se encontro en "+tipo+"s");
+				JOptionPane.showMessageDialog(frame,"El n√∫mero de carnet: "+numeroCarnet+" no se encontro en "+tipo+"s");
 			}
 			
 		}else{
@@ -213,7 +231,7 @@ public class ConsultarArticulos implements MouseListener{
 			Interfaz.libros.get(table.getSelectedRow()).setPersonaPrestado("nadie",0);
 			prestarArticulo.setText("Prestar");
 		}
-	}
+	}*/
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==table){
@@ -229,13 +247,13 @@ public class ConsultarArticulos implements MouseListener{
 			}else if(e.getSource()==botonPrestar){
 				if(entradaCarnet.getText().equals("Escriba el carnet") || entradaCarnet.getText().equals("") || confirmarCarnet()){
 					Component frame=null;
-					JOptionPane.showMessageDialog(frame,"Escriba el n˙mero de carnet valido por favor");
+					JOptionPane.showMessageDialog(frame,"Escriba el n√∫mero de carnet valido por favor");
 				}else{
 					if(entradaTipo.getText().equals("Estudiante") || entradaTipo.getText().equals("Colega") || entradaTipo.getText().equals("Familiar")){
-							prestarArticulo(Integer.parseInt(entradaCarnet.getText()),entradaTipo.getText());
+							//prestarArticulo(Integer.parseInt(entradaCarnet.getText()),entradaTipo.getText());
 						}else{
 							Component frame=null;
-							JOptionPane.showMessageDialog(frame,"Ingrese un tipo v·lido: <Estudiante> <Colega> <Familiar>");
+							JOptionPane.showMessageDialog(frame,"Ingrese un tipo v√°lido: <Estudiante> <Colega> <Familiar>");
 						}
 					}
 				}else if(seleccionarLibro.isSelected()){
