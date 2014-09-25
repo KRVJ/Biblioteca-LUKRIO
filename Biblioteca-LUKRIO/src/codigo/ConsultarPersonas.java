@@ -119,7 +119,6 @@ public class ConsultarPersonas implements MouseListener{
 	}
 	//Realiza una nueva busqueda de personas.
 	public void refrescarBusqueda(String busco){
-		String personasEncontradas="";
 		String bNombre="no",bApellido1="no",bApellido2="no",bTelefono="no",bCorreo="no",bEspecial="no";
 		//Registra los filtros para ver si se utilizan
 		if(entradaNombre.getText().equals("Nombre")==false && entradaNombre.getText().equals("")==false){
@@ -139,7 +138,9 @@ public class ConsultarPersonas implements MouseListener{
 			bCorreo="si";
 		}
 		if(busco=="todos"){
-			personasEncontradas+="ESTUDIANTES ENCONTRADOS:\n";
+			Object[] persona = new Object[]{"- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -",
+					"ESTUDIANTES","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -"};
+			tabla.addRow(persona);
 		}
 		if(busco=="estudiantes" || busco=="todos"){
 			if(entradaEspecial.getText().equals("Institución")==false && entradaEspecial.getText().equals("")==false && entradaEspecial.getText().equals("Adicional")==false){
@@ -173,7 +174,9 @@ public class ConsultarPersonas implements MouseListener{
 				}
 			}
 		if(busco=="todos"){
-			personasEncontradas+="COLEGAS ENCONTRADOS:\n";
+			Object[] persona = new Object[]{"- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -",
+					"COLEGAS","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -"};
+			tabla.addRow(persona);
 		}
 		}if(busco=="colegas" || busco=="todos"){
 			if(entradaEspecial.getText().equals("Puesto")==false && entradaEspecial.getText().equals("Adicional")==false && entradaEspecial.getText().equals("")==false){
@@ -206,7 +209,9 @@ public class ConsultarPersonas implements MouseListener{
 				}
 			}
 			if(busco=="todos"){
-				personasEncontradas+="COLEGAS ENCONTRADOS:\n";
+				Object[] persona = new Object[]{"- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -",
+						"FAMILIARES","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -","- - - - - - - - - - - - - - - - - - -"};
+				tabla.addRow(persona);
 			}
 		}if(busco=="familiares" || busco=="todos"){
 			if(entradaEspecial.getText().equals("Parentesco")==false && entradaEspecial.getText().equals("Adicional")==false && entradaEspecial.getText().equals("")==false){

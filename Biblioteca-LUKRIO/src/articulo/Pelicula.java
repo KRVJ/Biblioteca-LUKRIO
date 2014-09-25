@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 public class Pelicula extends Articulo{
 	String editorial,edicion;
 	int numeroLibro;
-	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,int lNumero){
+	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion){
 		setTitulo(lTitulo);
 		setAutorProductor(lAutor);
 		setCalificacion(lCalificacion);
@@ -13,13 +13,7 @@ public class Pelicula extends Articulo{
 		setEdicion(lEdicion);
 		setPortada(lPortada);
 		setPrestado(false);
-		setNumeroLibro(lNumero);
-	}
-	public void setNumeroLibro(int numeroLibro){
-		this.numeroLibro=numeroLibro;
-	}
-	public int getNumeroLibro(){
-		return numeroLibro;
+		setTipo("pelicula");
 	}
 	public void setEditorial(String editorial){
 		this.editorial=editorial;

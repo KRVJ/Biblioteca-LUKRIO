@@ -31,6 +31,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 	FormularioPersona formulario = new FormularioPersona();
 	ConsultarPersonas consultarPersonas=new ConsultarPersonas();
 	CargarPersonas cargarPersonas = new CargarPersonas();
+	FormularioArticulo registrarArticulo = new FormularioArticulo();
 	 
 	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bActividadesRecientes,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
@@ -115,6 +116,8 @@ public class BibliotecaLUKRIO implements MouseListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}else if(e.getSource()==bRegistrarArticulos){
+			registrarArticulo.vRegistroLibros.setVisible(true);
 		}
 	}
 	@Override

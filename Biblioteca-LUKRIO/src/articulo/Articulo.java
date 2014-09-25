@@ -9,6 +9,7 @@ public class Articulo{
 	int calificacion;
 	static String personaPrestada1;
 	static int carnetPersona1;
+	String tipo;
 	Articulo(){
 	}
 	//Setters y getters que comparten las subClases que heredan de Artículo.
@@ -16,6 +17,12 @@ public class Articulo{
 		personaPrestada1=personaPrestada;
 		carnetPersona1=carnetPersona;
 		System.out.println("Libro prestado al tipo: "+personaPrestada1+" Carnet: "+carnetPersona1);
+	}
+	public void setTipo(String tipo){
+		this.tipo=tipo;
+	}
+	public String getTipo(){
+		return tipo;
 	}
 	public void setTitulo(String titulo){
 		this.titulo=titulo;

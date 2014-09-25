@@ -164,13 +164,13 @@ public class FormularioPersona implements MouseListener{
 				if(compruebaTelefono(entradaTelefono.getText())){
 						if(tipoSeleccion=="estudiante"){
 						BibliotecaLUKRIO.personas.add(new Estudiante(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
-								entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet,tipoSeleccion));
+								entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
 						}else if(tipoSeleccion=="colega"){
 							BibliotecaLUKRIO.personas.add(new Colega(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
-									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet,tipoSeleccion));
+									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
 						}else{
 							BibliotecaLUKRIO.personas.add(new Familiar(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
-									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet,tipoSeleccion));
+									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
 						}
 						Component frame = null;
 						formulario.setVisible(false);

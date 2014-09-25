@@ -17,7 +17,7 @@ public class CargarPersonas {
 		//Abrir un archivo desde la base de datos
 		String direccion = null;
 		JFileChooser chooser = new JFileChooser();
-		File F=new File("c:/");  //Direccion principal donde se abrir· la ventana de busqueda.
+		File F=new File("c:/");  //Direccion principal donde se abrir√° la ventana de busqueda.
 		File NameDir,NamePath;
 		int Checker;
 		chooser.setCurrentDirectory(F);
@@ -56,27 +56,27 @@ public class CargarPersonas {
 							if(cInformacion[0].equals("estudiante")){
 								personasRegistradas++;
 								BibliotecaLUKRIO.personas.add(new Estudiante(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
-										cInformacion[5],cInformacion[6],BibliotecaLUKRIO.carnet,"estudiante"));
+										cInformacion[5],cInformacion[6],BibliotecaLUKRIO.carnet));
 								BibliotecaLUKRIO.carnet++;
 							}else if(cInformacion[0].equals("colega")){
 								personasRegistradas++;
 								BibliotecaLUKRIO.personas.add(new Colega(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
-										cInformacion[5],cInformacion[6],BibliotecaLUKRIO.carnet,"colega"));
+										cInformacion[5],cInformacion[6],BibliotecaLUKRIO.carnet));
 								BibliotecaLUKRIO.carnet++;
 							}else if(cInformacion[0].equals("familiar")){
 								personasRegistradas++;
 								BibliotecaLUKRIO.personas.add(new Familiar(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
-										cInformacion[5],cInformacion[6],BibliotecaLUKRIO.carnet,"familiar"));
+										cInformacion[5],cInformacion[6],BibliotecaLUKRIO.carnet));
 								BibliotecaLUKRIO.carnet++;
 							}else{
 								JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Con el tipo de persona");
 							}
 							//personas.add(new Persona(cInformacion[0],cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],cInformacion[5]));
 						}else{
-							JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Con el n˙mero de telÈfono o con el largo del archivo.");
+							JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Con el n√∫mero de tel√©fono o con el largo del archivo.");
 						}
 					}catch(Exception exception){
-						JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Est· mal redactada la informaciÛn.");
+						JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Est√° mal redactada la informaci√≥n.");
 				}
 	        }else{
 	        	finalizado=true;

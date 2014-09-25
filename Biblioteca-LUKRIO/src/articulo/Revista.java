@@ -5,21 +5,15 @@ import javax.swing.ImageIcon;
 public class Revista extends Articulo{
 	String editorial,edicion;
 	int numeroRevista;
-	public Revista(String rTitulo,String rAutor,String rEditorial, String rEdicion, ImageIcon rPortada,int rCalificacion, int rNumero){
+	public Revista(String rTitulo,String rAutor,String rEditorial, String rEdicion, ImageIcon rPortada,int rCalificacion){
 		setTitulo(rTitulo);
 		setAutorProductor(rAutor);
 		setCalificacion(rCalificacion);
 		setEditorial(rEditorial);
 		setEdicion(rEdicion);
 		setPortada(rPortada);
-		setRevistaNumero(rNumero);
 		setPrestado(false);
-	}
-	public void setRevistaNumero(int numeroRevista){
-		this.numeroRevista=numeroRevista;
-	}
-	public int getNumeroRevista(){
-		return numeroRevista;
+		setTipo("revista");
 	}
 	public void setEditorial(String editorial){
 		this.editorial=editorial;
