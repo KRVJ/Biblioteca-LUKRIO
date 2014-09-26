@@ -27,7 +27,7 @@ public class CargarPersonas {
 			NamePath=chooser.getSelectedFile();
 			direccion=NamePath.getAbsolutePath();
 			System.out.println(NameDir.getName());
-			System.out.println(NamePath.getAbsolutePath());
+			System.out.println((NamePath.getAbsolutePath().split(NameDir.getName()))[0]);
 		}
 		try{
 			//Trata de leer el archivo por lineas.

@@ -1,6 +1,7 @@
 package articulo;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class Revista extends Articulo{
 	String editorial,edicion;
@@ -12,7 +13,7 @@ public class Revista extends Articulo{
 		setEditorial(rEditorial);
 		setEdicion(rEdicion);
 		setPortada(rPortada);
-		setPrestado(false);
+		creaBotones();
 		setTipo("revista");
 	}
 	public void setEditorial(String editorial){

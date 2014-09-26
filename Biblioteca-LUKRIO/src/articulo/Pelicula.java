@@ -12,7 +12,7 @@ public class Pelicula extends Articulo{
 		setEditorial(lEditorial);
 		setEdicion(lEdicion);
 		setPortada(lPortada);
-		setPrestado(false);
+		creaBotones();
 		setTipo("pelicula");
 	}
 	public void setEditorial(String editorial){

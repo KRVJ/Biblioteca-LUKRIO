@@ -13,7 +13,7 @@ public class Libro extends Articulo{
 		setEditorial(lEditorial);
 		setEdicion(lEdicion);
 		setPortada(lPortada);
-		setPrestado(false);
+		creaBotones();
 		setTipo("libro");
 	}
 	//Setters and getters de la clase libro para obtener y asignar los valores correspondientes a la clase.
