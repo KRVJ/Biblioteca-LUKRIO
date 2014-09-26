@@ -26,14 +26,13 @@ public class BibliotecaLUKRIO implements MouseListener {
 	public static ArrayList<Articulo>articulos=new ArrayList<Articulo>();
 	static int carnet=20140000;
 	//Fecha fecha = new Fecha();
-	JFrame vPrincipal,prueba;
+	JFrame vPrincipal;
 	
 	FormularioPersona formulario = new FormularioPersona();
 	ConsultarPersonas consultarPersonas=new ConsultarPersonas();
 	CargarPersonas cargarPersonas = new CargarPersonas();
 	FormularioArticulo registrarArticulo = new FormularioArticulo();
 	ConsultarArticulos consultarArticulos = new ConsultarArticulos();
-	//Scroll scroll = new Scroll();
 	
 	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bActividadesRecientes,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
