@@ -1,6 +1,5 @@
 package codigo;
 import java.awt.*;
-
 import java.awt.event.*; 
 
 /* Clase de ventana configuraciones
@@ -13,19 +12,19 @@ public class Configuracion implements ActionListener {
 	Font fuente=new Font("TimesRoman", Font.BOLD, 18);
 	// creacion de los witgets
 	
-	//botones de la ventana configuración
+	//botones de la ventana configuraciÃ³n
 	JButton  CambiarAlertas= new JButton ("Cambiar alertas"); 
 	JButton  top= new JButton ("Cambiar top ");
-	JButton CambiarMasPrestados = new JButton ("Cambiar más prestados");
+	JButton CambiarMasPrestados = new JButton ("Cambiar mÃ¡s prestados");
 	JButton manual = new JButton("Manual");
 	JButton salir = new JButton("Salir");
 	JButton aceptar= new JButton("Aceptar");
 	
-	// textos de la ventana configuración
-	JTextArea top1= new JTextArea("Ingrese el límite del \n         top: ");
+	// textos de la ventana configuraciÃ³n
+	JTextArea top1= new JTextArea("Ingrese el lÃ­mite del \n         top: ");
 	JTextArea prest= new JTextArea("Ingrese la cantidad minima\n de veces prestadas: ");
 	JTextArea rango= new JTextArea("Ingrese la cantidad de \nmeses del rango: ");
-	JTextArea alertas= new JTextArea("Ingrese el límite de las alertas: ");
+	JTextArea alertas= new JTextArea("Ingrese el lÃ­mite de las alertas: ");
 	JTextArea col= new JTextArea("Colega : ");
 	JTextArea est= new JTextArea("Estudiante : ");
 	JTextArea fam= new JTextArea("Familiar : ");
@@ -47,6 +46,8 @@ public class Configuracion implements ActionListener {
 	JLabel rj= new JLabel();
 	JLabel vd= new JLabel();
 	JLabel at= new JLabel();
+	JLabel imageTop = new JLabel();
+	JLabel imagePila = new JLabel();
 	JButton atras = new JButton();
 	
 	
@@ -55,7 +56,7 @@ public class Configuracion implements ActionListener {
 		//ventana
 		vConfig=new JFrame();
 		
-	    vConfig.setBounds(400,100,720,400);
+	    vConfig.setBounds(400,100,720,430);//cambio
 	    vConfig.setLayout(null);
 		
 		vConfig.setTitle("Configuraciones");
@@ -84,12 +85,16 @@ public class Configuracion implements ActionListener {
         vConfig.add(rj);
         vConfig.add(vd);
         vConfig.add(atras);
+        vConfig.add(imageTop);
+        vConfig.add(imagePila);
         
         //label
         am.setBounds(225, 50, 100, 100);
         vd.setBounds(400, 50, 100, 100);
         rj.setBounds(580, 50, 100, 100);
-        atras.setBounds(8,318,50,40);
+        imageTop.setBounds(220, 160, 300, 250);
+        imagePila.setBounds(490, 200, 150, 150);
+        atras.setBounds(8,335,50,40);//cambio
         
         
         
@@ -158,6 +163,8 @@ public class Configuracion implements ActionListener {
         rj.setIcon(cargarImagen("imagenes/rojo.png",80,80));
         vd.setIcon(cargarImagen("imagenes/verde.png",80,80));
         atras.setIcon(cargarImagen("imagenes/retroceder.png",50,40));
+        imageTop.setIcon(cargarImagen("imagenes/top.png",300,250));
+        imagePila.setIcon(cargarImagen("imagenes/pila.png",150,150));
         
         // esconder widgets
         top1.setVisible(false);
@@ -179,6 +186,8 @@ public class Configuracion implements ActionListener {
         am.setVisible(false);
         rj.setVisible(false);
         vd.setVisible(false);
+        imageTop.setVisible(false);
+        imagePila.setVisible(false);
         
         vConfig.setVisible(false);
 	}
@@ -196,7 +205,8 @@ public class Configuracion implements ActionListener {
 		// opcion top
 		if(e.getSource()==top){
 			valor="top";
-			
+			imagePila.setVisible(false);
+			imageTop.setVisible(true);
 			col.setVisible(false);
 	        est.setVisible(false);
 	        fam.setVisible(false);
@@ -224,6 +234,8 @@ public class Configuracion implements ActionListener {
 		
 		// opcion cambiar Alertas
 		else if(e.getSource()==CambiarAlertas){
+			imageTop.setVisible(false);
+			imagePila.setVisible(false);
 			valor="cambiarA";
 			limite.setText("");
 			col.setVisible(true);
@@ -248,9 +260,10 @@ public class Configuracion implements ActionListener {
 	        vd.setVisible(true);
 			
 		}
-		//opcion cambiar más prestados
+		//opcion cambiar mÃ¡s prestados
 		else if(e.getSource()==CambiarMasPrestados){
-			
+			imageTop.setVisible(false);
+			imagePila.setVisible(true);
 			valor="masP";
 			col.setVisible(false);
 	        est.setVisible(false);
@@ -275,12 +288,12 @@ public class Configuracion implements ActionListener {
 		    vd.setVisible(false);
 			
 		}
-		// configuración manual
+		// configuraciÃ³n manual
 		else if(e.getSource()==manual){
 			
 			
 		}
-		// método aceptar
+		// mÃ©todo aceptar
 		else if(e.getSource()==aceptar){
 			if(valor=="top"){
 				// cambiar top
@@ -290,7 +303,7 @@ public class Configuracion implements ActionListener {
 				//cambiar alertas
 			}
 			else if(valor=="masP"){
-				//cambiar más prestados
+				//cambiar mÃ¡s prestados
 			}
 		}
 		else if(e.getSource()==atras){
