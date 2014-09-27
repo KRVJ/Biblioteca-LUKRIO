@@ -38,6 +38,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 	FormularioPersona formulario = new FormularioPersona();
 	ConsultarPersonas consultarPersonas=new ConsultarPersonas();
 	CargarPersonas cargarPersonas = new CargarPersonas();
+	CargarArticulos cargarArticulos = new CargarArticulos();
 	FormularioArticulo registrarArticulo = new FormularioArticulo();
 	public static ConsultarArticulos consultarArticulos = new ConsultarArticulos();
 	public static Fecha fecha = new Fecha();
@@ -55,11 +56,11 @@ public class BibliotecaLUKRIO implements MouseListener {
 		vPrincipal.setTitle("Biblioteca LUKRIO");
         creaBotones();
         
-        //ImageIcon icon=new ImageIcon("RedDragon.jpg");
-	//Image icono = icon.getImage();  //Se obtiene la imagen del icono
-	//ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(600,360,Image.SCALE_SMOOTH)); //Cambiamos el tama�o de la imagen
-	//ImagenFondo fondo = new ImagenFondo(iconoEscalado.getImage());
-	//vPrincipal.getContentPane().add(fondo);
+        ImageIcon icon=new ImageIcon("RedDragon.jpg");
+		Image icono = icon.getImage();  //Se obtiene la imagen del icono
+		ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(600,360,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
+		ImagenFondo fondo = new ImagenFondo(iconoEscalado.getImage());
+		vPrincipal.getContentPane().add(fondo);
 		
         vPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -139,6 +140,8 @@ public class BibliotecaLUKRIO implements MouseListener {
 		}else if(e.getSource()==bConsultarArticulos){
 			//consultarArticulos.scroll.leeArticulo("libro");
 			consultarArticulos.ventanaArticulos.setVisible(true);
+		}else if(e.getSource()==bCargarArticulos){
+			cargarArticulos.listarImagenes();
 		}
 	}
 	@Override
