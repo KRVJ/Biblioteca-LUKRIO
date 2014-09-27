@@ -5,13 +5,14 @@ import javax.swing.ImageIcon;
 public class Pelicula extends Articulo{
 	String editorial,edicion;
 	int numeroLibro;
-	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion){
+	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,int numero){
 		setTitulo(lTitulo);
 		setAutorProductor(lAutor);
 		setCalificacion(lCalificacion);
 		setEditorial(lEditorial);
 		setEdicion(lEdicion);
 		setPortada(lPortada);
+		setNumero(numero);
 		creaBotones();
 		setTipo("pelicula");
 	}
@@ -29,11 +30,11 @@ public class Pelicula extends Articulo{
 	}
 	public String toString(){
 		String msg;
-		msg=getTitulo()+"/n";
-		msg+=getAutorProductor()+"/n";
-		msg+=getEditorial()+"/n";
-		msg+=getEdicion();
-		msg+=getCalificacion();
+		msg="Titulo: "+getTitulo()+"\n"+"\n";
+		msg+="Productor: "+getAutorProductor()+"\n"+"\n";
+		msg+="Editorial: "+getEditorial()+"\n"+"\n";
+		msg+="Edicióc: "+getEdicion()+"\n"+"\n";
+		msg+="Calificación: "+getCalificacion();
 		return msg;
 	}
 }

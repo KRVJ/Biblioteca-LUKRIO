@@ -1,13 +1,10 @@
 package codigo;
 
-import java.awt.Image;
 import java.io.File;
-
 import javax.swing.JFileChooser;
 
 public class CargarArticulos {
 	public void listarImagenes(){
-		String direccion = null;
 		JFileChooser chooser = new JFileChooser();
 		File F=new File("c:/");  //Direccion principal donde se abrirá la ventana de busqueda.
 		File NameDir = null,NamePath = null;
@@ -17,7 +14,6 @@ public class CargarArticulos {
 		if(Checker==JFileChooser.APPROVE_OPTION){
 			NameDir=chooser.getCurrentDirectory();
 			NamePath=chooser.getSelectedFile();
-			direccion=NamePath.getAbsolutePath();
 			System.out.println(NameDir.getName());
 			System.out.println((NamePath.getAbsolutePath().split(NameDir.getName()))[0]);
 		}

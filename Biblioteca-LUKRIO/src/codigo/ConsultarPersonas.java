@@ -7,7 +7,6 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import articulo.Libro;
 import persona.Colega;
 import persona.Estudiante;
 import persona.Familiar;
@@ -17,17 +16,17 @@ public class ConsultarPersonas implements MouseListener{
 	static String tipoBusqueda="estudiantes";
 	private JButton buscarPersonas;
 	String[] columnas = {"Carnet","Nombre","Primer Apellido","Segundo Apellido","Correo",
-			"Tel茅fono","Instituci贸n"};
+			"Tel閒ono","Instituci髇"};
 	Object[][] info = {};
 	DefaultTableModel tabla= new DefaultTableModel(info,columnas);
 	JTable table;
 	//FILTROS
-	JTextField entradaNombre=new JTextField("Nombre");     //Campos de texto donde se implementara la informaci贸n de los filtros.
+	JTextField entradaNombre=new JTextField("Nombre");     //Campos de texto donde se implementara la informaci髇 de los filtros.
     JTextField entradaApellido1=new JTextField("1er Apellido");
     JTextField entradaApellido2=new JTextField("2do Apellido");
     JTextField entradaCorreo=new JTextField("Correo");
-    JTextField entradaTelefono=new JTextField("Tel茅fono");
-    JTextField entradaEspecial=new JTextField("Instituci贸n");
+    JTextField entradaTelefono=new JTextField("Tel閒ono");
+    JTextField entradaEspecial=new JTextField("Instituci髇");
     
 	//Seleccionador de busqueda
 	JRadioButton seleccionarEstudiante = new JRadioButton("Estudiante");
@@ -38,7 +37,7 @@ public class ConsultarPersonas implements MouseListener{
 		
 		ventanaConsultas.setLayout(null);      //Para que no se acomoden automaticamente
 		ventanaConsultas.setTitle("Consultar personas");  //Titulo de ventana
-		ventanaConsultas.setSize(1000,550);       //Tama帽o de ventana
+		ventanaConsultas.setSize(1000,550);       //Tama駉 de ventana
 		ventanaConsultas.setLocation(200,80);  //localizacion de ventana
 		ventanaConsultas.setResizable(false);  //Minimizar ventana
 		
@@ -104,12 +103,12 @@ public class ConsultarPersonas implements MouseListener{
 	public void refrescarVentana(){
 		seleccionarEstudiante.setSelected(true);
 		tipoBusqueda="estudiantes";
-		entradaNombre.setText("Nombre");     //Campos de texto donde se implementara la informaci贸n de los filtros.
+		entradaNombre.setText("Nombre");     //Campos de texto donde se implementara la informaci髇 de los filtros.
 	    entradaApellido1.setText("1er Apellido");
 	    entradaApellido2.setText("2do Apellido");
 	    entradaCorreo.setText("Correo");
-	    entradaTelefono.setText("Tel茅fono");
-	    entradaEspecial.setText("Instituci贸n");
+	    entradaTelefono.setText("Tel閒ono");
+	    entradaEspecial.setText("Instituci髇");
 	    //informacion.setText("Presiona <Buscar> para iniciar la busqueda."+"\n"+"Puedes usar los filtros para faciliarla.");
 	}
 	public void reiniciaTabla(){
@@ -131,7 +130,7 @@ public class ConsultarPersonas implements MouseListener{
 		if(entradaApellido2.getText().equals("2do Apellido")==false && entradaApellido2.getText().equals("")==false){
 			bApellido2="si";
 		}
-		if(entradaTelefono.getText().equals("Tel茅fono")==false && entradaTelefono.getText().equals("")==false){
+		if(entradaTelefono.getText().equals("Tel閒ono")==false && entradaTelefono.getText().equals("")==false){
 			bTelefono="si";
 		}
 		if(entradaCorreo.getText().equals("Correo")==false && entradaCorreo.getText().equals("")==false){
@@ -143,7 +142,7 @@ public class ConsultarPersonas implements MouseListener{
 			tabla.addRow(persona);
 		}
 		if(busco=="estudiantes" || busco=="todos"){
-			if(entradaEspecial.getText().equals("Instituci贸n")==false && entradaEspecial.getText().equals("")==false && entradaEspecial.getText().equals("Adicional")==false){
+			if(entradaEspecial.getText().equals("Instituci髇")==false && entradaEspecial.getText().equals("")==false && entradaEspecial.getText().equals("Adicional")==false){
 				bEspecial="si";
 				System.out.println("xq en estudia");}
 			//Revisa la lista de estudiantes y los filtra de acuerdo a las especificaciones dadas.
@@ -252,7 +251,7 @@ public class ConsultarPersonas implements MouseListener{
 			reiniciaTabla();
 			refrescarBusqueda(tipoBusqueda);
 		}else if(seleccionarEstudiante.isSelected()){
-			entradaEspecial.setText("Instituci贸n");
+			entradaEspecial.setText("Instituci髇");
 			tipoBusqueda="estudiantes";
 		}
 		else if(seleccionarColega.isSelected()){

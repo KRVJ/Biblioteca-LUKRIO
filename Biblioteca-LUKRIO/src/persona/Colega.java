@@ -24,7 +24,7 @@ public class Colega extends Persona {
 		  msg+="Nombre: "+getNombre()+"\n";
 		  msg+="Primer Apellido: "+getApellido1()+"\n";
 		  msg+="Segundo Apellido: "+getApellido2()+"\n";
-		  msg+="TelÃ©fono: "+getTelefono()+"\n";
+		  msg+="Teléfono: "+getTelefono()+"\n";
 		  msg+="Correo: "+getCorreo();
 		  msg+="Puesto: "+getPuesto();
 		  return msg;

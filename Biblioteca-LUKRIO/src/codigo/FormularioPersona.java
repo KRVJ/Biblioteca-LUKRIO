@@ -3,14 +3,7 @@ package codigo;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import persona.Colega;
 import persona.Estudiante;
@@ -29,8 +22,8 @@ public class FormularioPersona implements MouseListener{
     JTextField entradaApellido1=new JTextField("Introduce el primer apellido");
     JTextField entradaApellido2=new JTextField("Introduce el segundo apellido");
     JTextField entradaCorreo=new JTextField("Introduce el correo");
-    JTextField entradaTelefono=new JTextField("Introduce el telÃ©fono");
-    JTextField entradaEspecial=new JTextField("Introduce la instituciÃ³n");
+    JTextField entradaTelefono=new JTextField("Introduce el teléfono");
+    JTextField entradaEspecial=new JTextField("Introduce la institución");
     
 	//Botones del seleccionador del formulario
 	JRadioButton seleccionarEstudiante = new JRadioButton("Estudiante");
@@ -41,7 +34,7 @@ public class FormularioPersona implements MouseListener{
 	FormularioPersona(){
 		formulario.setLayout(null);
 		formulario.setTitle("Formulario");  //Titulo de ventana
-		formulario.setSize(400,390);       //TamaÃ±o de ventana
+		formulario.setSize(400,390);       //Tamaño de ventana
 		formulario.setLocation(450,145);  //localizacion de ventana
 		formulario.setResizable(false);  //Minimizar ventana
 		creaInterfazFormulario();
@@ -78,7 +71,7 @@ public class FormularioPersona implements MouseListener{
         
         entradaTelefono.setBounds(130,130,200,20);
         formulario.add(entradaTelefono);
-        labelTelefono=new JLabel("TelÃ©fono:");
+        labelTelefono=new JLabel("Teléfono:");
         labelTelefono.setBounds(10,130,200,20);
         formulario.add(labelTelefono);
         
@@ -112,7 +105,7 @@ public class FormularioPersona implements MouseListener{
         
         entradaEspecial.setBounds(130,250,200,20);
         formulario.add(entradaEspecial);
-        labelEspecial=new JLabel("InstituciÃ³n: ");
+        labelEspecial=new JLabel("Institución: ");
         labelEspecial.setBounds(10,250,200,20);
         formulario.add(labelEspecial);
 	}
@@ -123,15 +116,15 @@ public class FormularioPersona implements MouseListener{
 	    entradaApellido1.setText("Introduce el primer apellido");
 	    entradaApellido2.setText("Introduce el segundo apellido");
 	    entradaCorreo.setText("Introduce el correo");
-	    entradaTelefono.setText("Introduce el telÃ©fono");
+	    entradaTelefono.setText("Introduce el teléfono");
 	    refrescarSeleccion("estudiante");
 	}
 	//Seleccion del tipo de persona
 	public void refrescarSeleccion(String seleccion){
 		tipoSeleccion=seleccion;
 		if (seleccion=="estudiante"){
-			entradaEspecial.setText("Introduce la instituciÃ³n");
-			labelEspecial.setText("InstituciÃ³n: ");
+			entradaEspecial.setText("Introduce la institución");
+			labelEspecial.setText("Institución: ");
 		}else if(seleccion=="colega"){
 			entradaEspecial.setText("Introduce el puesto");
 			labelEspecial.setText("Puesto: ");
@@ -140,7 +133,7 @@ public class FormularioPersona implements MouseListener{
 			labelEspecial.setText("Parentesco: ");
 		}
 	}
-	//Comprueba si la entrada del telÃ©fono es un nÃºmero o no.
+	//Comprueba si la entrada del teléfono es un número o no.
 	public static boolean compruebaTelefono(String telefono){
 		try{
 			 Integer.parseInt(telefono);
@@ -156,11 +149,11 @@ public class FormularioPersona implements MouseListener{
 				entradaApellido1.getText().equals("Introduce el primer apellido")==false && entradaApellido1.getText().equals("")==false &&
 				entradaApellido2.getText().equals("Introduce el segundo apellido")==false && entradaApellido2.getText().equals("")==false &&
 				entradaCorreo.getText().equals("Introduce el correo")==false && entradaApellido2.getText().equals("")==false &&
-				entradaTelefono.getText().equals("Introduce el telÃ©fono")==false && entradaApellido2.getText().equals("")==false &&
+				entradaTelefono.getText().equals("Introduce el teléfono")==false && entradaApellido2.getText().equals("")==false &&
 				entradaNombre.getText().length()<11 && entradaApellido1.getText().length()<11 && entradaApellido2.getText().length()<11 &&
-				entradaTelefono.getText().length()==8 && entradaEspecial.getText().equals("")==false && entradaEspecial.getText().equals("Introduce la instituciÃ³n")==false &&
+				entradaTelefono.getText().length()==8 && entradaEspecial.getText().equals("")==false && entradaEspecial.getText().equals("Introduce la institución")==false &&
 				entradaEspecial.getText().equals("Introduce el parentesco")==false && entradaEspecial.getText().equals("Introduce el puesto")==false){
-				//Comprobamos que el telÃ©fono sea un nÃºmero
+				//Comprobamos que el teléfono sea un número
 				if(compruebaTelefono(entradaTelefono.getText())){
 						if(tipoSeleccion=="estudiante"){
 						BibliotecaLUKRIO.personas.add(new Estudiante(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
@@ -176,14 +169,14 @@ public class FormularioPersona implements MouseListener{
 						formulario.setVisible(false);
 						refrescarFormulario();
 						BibliotecaLUKRIO.carnet++;
-						JOptionPane.showMessageDialog(frame,"La persona se ha registrada con Ã©xito. Su nÃºmero de carnet es: "+BibliotecaLUKRIO.carnet);
+						JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
 				}else{
 					Component frame = null;
-					JOptionPane.showMessageDialog(frame,"Por favor digite un nÃºmero de telÃ©fono vÃ¡lido");
+					JOptionPane.showMessageDialog(frame,"Por favor digite un número de teléfono válido");
 				}
 			}else{
 				Component frame = null;
-				JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos, recuerde que deben tener menos de 10 caracteres y el correo menos de 15 y el telÃ©fono 8 dÃ­gitos");
+				JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos, recuerde que deben tener menos de 10 caracteres y el correo menos de 15 y el teléfono 8 dígitos");
 			}
 		}
 		else if(seleccionarEstudiante.isSelected()){

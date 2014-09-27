@@ -33,11 +33,11 @@ public class FormularioArticulo implements MouseListener {
 	static ImageIcon portada;
 	String tipoSeleccion;
 	
-	JTextField entradaTitulo=new JTextField("Introduce el tÃ­tulo");
+	JTextField entradaTitulo=new JTextField("Introduce el título");
     JTextField entradaAutor=new JTextField("Introduce el autor");
     JTextField entradaEditorial=new JTextField("Introduce el editorial");
-    JTextField entradaEdicion=new JTextField("Introduce la ediciÃ³n");
-    //JTextField entradaCalificacion=new JTextField("Introduce el calificaciÃ³n(1-5)");
+    JTextField entradaEdicion=new JTextField("Introduce la edición");
+    //JTextField entradaCalificacion=new JTextField("Introduce el calificación(1-5)");
     JRadioButton calificacion1 = new JRadioButton("");
     JRadioButton calificacion2 = new JRadioButton("");
     JRadioButton calificacion3 = new JRadioButton("");
@@ -55,7 +55,7 @@ public class FormularioArticulo implements MouseListener {
 	FormularioArticulo(){
 		vRegistroLibros.setLayout(null);
 		vRegistroLibros.setTitle("Cargar Libro");  //Titulo de ventana
-		vRegistroLibros.setSize(550,350);       //TamaÃ±o de ventana
+		vRegistroLibros.setSize(550,350);       //Tamaño de ventana
 		vRegistroLibros.setLocation(450,145);  //localizacion de ventana
 		vRegistroLibros.setResizable(false);  //Minimizar ventana
 		crearInterfaz();
@@ -76,7 +76,7 @@ public class FormularioArticulo implements MouseListener {
 		
 		entradaTitulo.setBounds(100,10,150,20);
         vRegistroLibros.add(entradaTitulo);
-        labelTitulo=new JLabel("TÃ­tulo:");
+        labelTitulo=new JLabel("Título:");
         labelTitulo.setBounds(10,10,100,20);
         vRegistroLibros.add(labelTitulo);
         
@@ -94,11 +94,11 @@ public class FormularioArticulo implements MouseListener {
         
         entradaEdicion.setBounds(100,130,150,20);
         vRegistroLibros.add(entradaEdicion);
-        labelEdicion=new JLabel("EdiciÃ³n:");
+        labelEdicion=new JLabel("Edición:");
         labelEdicion.setBounds(10,130,100,20);
         vRegistroLibros.add(labelEdicion);
         
-        labelCalificacion=new JLabel("CalificaciÃ³n:");
+        labelCalificacion=new JLabel("Calificación:");
         labelCalificacion.setBounds(10,170,100,20);
         vRegistroLibros.add(labelCalificacion);
         
@@ -181,7 +181,7 @@ public class FormularioArticulo implements MouseListener {
 			}catch(Exception exception){}
 			ImageIcon icon=new ImageIcon(imagen);
 			Image icono = icon.getImage();  //Se obtiene la imagen del icono
-		    ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(200,200,Image.SCALE_SMOOTH)); //Cambiamos el tamaÃ±o de la imagen
+		    ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(200,200,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
 			portada=iconoEscalado;
 	        label.setIcon(iconoEscalado);
 	        vRegistroLibros.setVisible(false);
@@ -190,27 +190,31 @@ public class FormularioArticulo implements MouseListener {
 		}
 	}
 	public void refrescarVentana(){
-		entradaTitulo.setText("Introduce el tÃ­tulo");
-		entradaAutor.setText("Introduce el tÃ­tulo");
+		entradaTitulo.setText("Introduce el título");
+		entradaAutor.setText("Introduce el título");
 		entradaEditorial.setText("Introduce el editorial");
-		entradaEdicion.setText("Introduce la ediciÃ³n");
+		entradaEdicion.setText("Introduce la edición");
 		calificacion=1;
 		calificacion1.setSelected(true);
 		label.setIcon(null);
 		vRegistroLibros.setVisible(false);
 	}
 	public void registrarLibro(){
-		if(entradaTitulo.getText().equals("Introduce el tÃ­tulo")==false && entradaTitulo.getText().equals("")==false
+		if(entradaTitulo.getText().equals("Introduce el título")==false && entradaTitulo.getText().equals("")==false
 		&& entradaAutor.getText().equals("Introduce el autor")==false && entradaAutor.getText().equals("")==false
 		&& entradaEditorial.getText().equals("Introduce el editorial")==false && entradaEditorial.getText().equals("")==false
-		&& entradaEdicion.getText().equals("Introduce la ediciÃ³n")==false && entradaEdicion.getText().equals("")==false && label.getIcon()!=null){
+		&& entradaEdicion.getText().equals("Introduce la edición")==false && entradaEdicion.getText().equals("")==false && label.getIcon()!=null){
 			if(tipoSeleccion=="libro"){
-				BibliotecaLUKRIO.articulos.add(new Libro(entradaTitulo.getText(),entradaAutor.getText(),entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion));
+				BibliotecaLUKRIO.articulos.add(new Libro(entradaTitulo.getText(),entradaAutor.getText(),
+						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,BibliotecaLUKRIO.numeroArticulo));
 			}else if(tipoSeleccion=="pelicula"){
-				BibliotecaLUKRIO.articulos.add(new Pelicula(entradaTitulo.getText(),entradaAutor.getText(),entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion));
-			}else if(tipoSeleccion=="pelicula"){
-				BibliotecaLUKRIO.articulos.add(new Revista(entradaTitulo.getText(),entradaAutor.getText(),entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion));
+				BibliotecaLUKRIO.articulos.add(new Pelicula(entradaTitulo.getText(),entradaAutor.getText(),
+						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,BibliotecaLUKRIO.numeroArticulo));
+			}else if(tipoSeleccion=="revista"){
+				BibliotecaLUKRIO.articulos.add(new Revista(entradaTitulo.getText(),entradaAutor.getText(),
+						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,BibliotecaLUKRIO.numeroArticulo));
 			}
+			BibliotecaLUKRIO.numeroArticulo++;
 			Component frame = null;
 			refrescarVentana();
 			JOptionPane.showMessageDialog(frame,tipoSeleccion+" registrad@ correctamente.");
@@ -247,7 +251,7 @@ public class FormularioArticulo implements MouseListener {
 			//refrescarSeleccion("estudiante");
 		}
 		else if(seleccionarPelicula.isSelected()){
-			bRegistrarArticulo.setText("Registrar PelÃ­cula");
+			bRegistrarArticulo.setText("Registrar Película");
 			tipoSeleccion="pelicula";
 			//refrescarSeleccion("colega");
 		}

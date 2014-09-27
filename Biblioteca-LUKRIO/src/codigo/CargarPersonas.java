@@ -17,7 +17,7 @@ public class CargarPersonas {
 		//Abrir un archivo desde la base de datos
 		String direccion = null;
 		JFileChooser chooser = new JFileChooser();
-		File F=new File("c:/");  //Direccion principal donde se abrir√° la ventana de busqueda.
+		File F=new File("c:/");  //Direccion principal donde se abrir· la ventana de busqueda.
 		File NameDir,NamePath;
 		int Checker;
 		chooser.setCurrentDirectory(F);
@@ -73,10 +73,10 @@ public class CargarPersonas {
 							}
 							//personas.add(new Persona(cInformacion[0],cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],cInformacion[5]));
 						}else{
-							JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Con el n√∫mero de tel√©fono o con el largo del archivo.");
+							JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Con el n˙mero de telÈfono o con el largo del archivo.");
 						}
 					}catch(Exception exception){
-						JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Est√° mal redactada la informaci√≥n.");
+						JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Est· mal redactada la informaciÛn.");
 				}
 	        }else{
 	        	finalizado=true;

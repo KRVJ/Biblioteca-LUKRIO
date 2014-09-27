@@ -4,23 +4,23 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Fecha {
-	private int año = 0, mes= 0, dia = 0;  
+	private int ano = 0, mes= 0, dia = 0;
 
-	GregorianCalendar objFecha= new GregorianCalendar();    //	Creación del calendario mediante GregorianCalendar 
+	GregorianCalendar objFecha= new GregorianCalendar();    //	Creaci�n del calendario mediante GregorianCalendar 
 
 	//================================== Setters and Getters
-	public int getAño() {              
-		return año;
+	public int getAno() {              
+		return ano;
 	}
-	public void setAño(int año) {
-		this.año += año;
+	public void setAno(int ano) {
+		this.ano += ano;
 	}
 	public int getMes() {
 		return mes;
 	}
 	public void setMes(int mes) {
 		if (this.mes + mes > 12){
-			this.año += 1;
+			this.ano += 1;
 			this.setMes( mes - 12 );		
 		}
 		else {this.mes += mes;}
@@ -36,8 +36,8 @@ public class Fecha {
 		else {this.dia += dia;}
 	}
 	
-	public void iniciarFecha() {
-		this.año = objFecha.get(Calendar.YEAR);
+	public void fechaInicial() {
+		this.ano = objFecha.get(Calendar.YEAR);
 		this.mes = objFecha.get(Calendar.MONTH)+1;   //Gregorian calendar comienza en o por ello le agregamos 1
 		this.dia = objFecha.get(Calendar.DAY_OF_MONTH);
 	}

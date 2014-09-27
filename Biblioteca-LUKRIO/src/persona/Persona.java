@@ -59,7 +59,7 @@ public class Persona{
 	  msg+="Nombre: "+getNombre()+"\n";
 	  msg+="Primer Apellido: "+getApellido1()+"\n";
 	  msg+="Segundo Apellido: "+getApellido2()+"\n";
-	  msg+="TelÃ©fono: "+getTelefono()+"\n";
+	  msg+="Teléfono: "+getTelefono()+"\n";
 	  msg+="Correo: "+getCorreo();
 	  return msg;
   }

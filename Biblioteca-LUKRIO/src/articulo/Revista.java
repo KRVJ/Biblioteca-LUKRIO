@@ -6,13 +6,14 @@ import javax.swing.JButton;
 public class Revista extends Articulo{
 	String editorial,edicion;
 	int numeroRevista;
-	public Revista(String rTitulo,String rAutor,String rEditorial, String rEdicion, ImageIcon rPortada,int rCalificacion){
+	public Revista(String rTitulo,String rAutor,String rEditorial, String rEdicion, ImageIcon rPortada,int rCalificacion,int numero){
 		setTitulo(rTitulo);
 		setAutorProductor(rAutor);
 		setCalificacion(rCalificacion);
 		setEditorial(rEditorial);
 		setEdicion(rEdicion);
 		setPortada(rPortada);
+		setNumero(numero);
 		creaBotones();
 		setTipo("revista");
 	}
@@ -30,11 +31,11 @@ public class Revista extends Articulo{
 	}
 	public String toString(){
 		String msg;
-		msg=getTitulo()+"/n";
-		msg+=getAutorProductor()+"/n";
-		msg+=getEditorial()+"/n";
-		msg+=getEdicion();
-		msg+=getCalificacion();
+		msg="Titulo: "+getTitulo()+"\n"+"\n";
+		msg+="Productor: "+getAutorProductor()+"\n"+"\n";
+		msg+="Editorial: "+getEditorial()+"\n"+"\n";
+		msg+="Edicióc: "+getEdicion()+"\n"+"\n";
+		msg+="Calificación: "+getCalificacion();
 		return msg;
 	}
 }

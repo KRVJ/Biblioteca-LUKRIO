@@ -25,9 +25,9 @@ public class Estudiante extends Persona {
 		  msg+="Nombre: "+getNombre()+"\n";
 		  msg+="Primer Apellido: "+getApellido1()+"\n";
 		  msg+="Segundo Apellido: "+getApellido2()+"\n";
-		  msg+="TelÃ©fono: "+getTelefono()+"\n";
+		  msg+="Teléfono: "+getTelefono()+"\n";
 		  msg+="Correo: "+getCorreo()+"/n";
-		  msg+="InstituciÃ³n: "+getInstitucion();
+		  msg+="Institución: "+getInstitucion();
 		  return msg;
 	  }
 	public String consulta() {

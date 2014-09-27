@@ -6,13 +6,14 @@ public class Libro extends Articulo{
 	String editorial,edicion;
 	int numeroLibro;
 	//Constructor con los parametros para asignar los valores iniciales.
-	public Libro(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion){
+	public Libro(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,int numero){
 		setTitulo(lTitulo);
 		setAutorProductor(lAutor);
 		setCalificacion(lCalificacion);
 		setEditorial(lEditorial);
 		setEdicion(lEdicion);
 		setPortada(lPortada);
+		setNumero(numero);
 		creaBotones();
 		setTipo("libro");
 	}
@@ -31,11 +32,11 @@ public class Libro extends Articulo{
 	}
 	public String toString(){
 		String msg;
-		msg=getTitulo()+"/n";
-		msg+=getAutorProductor()+"/n";
-		msg+=getEditorial()+"/n";
-		msg+=getEdicion();
-		msg+=getCalificacion();
+		msg="Titulo: "+getTitulo()+"\n"+"\n";
+		msg+="Productor: "+getAutorProductor()+"\n"+"\n";
+		msg+="Editorial: "+getEditorial()+"\n"+"\n";
+		msg+="Edicióc: "+getEdicion()+"\n"+"\n";
+		msg+="Calificación: "+getCalificacion();
 		return msg;
 	}
 }
