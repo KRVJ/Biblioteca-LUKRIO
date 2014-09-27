@@ -21,15 +21,15 @@ public class BibliotecaLUKRIO implements MouseListener {
 	public static ArrayList<Articulo>articulos=new ArrayList<Articulo>();
 	static int carnet=20140000;
 	static int numeroArticulo=0;
-	public static int toleranciaVerdeEstudiante=0;
+	public static int toleranciaVerdeEstudiante=10;
 	public static int toleranciaAmarilloEstudiante=0;
 	public static int toleranciaRojoEstudiante=0;
 	
-	public static int toleranciaVerdeColega=0;
+	public static int toleranciaVerdeColega=10;
 	public static int toleranciaAmarilloColega=0;
 	public static int toleranciaRojoColega=0;
 	
-	public static int toleranciaVerdeFamiliar=0;
+	public static int toleranciaVerdeFamiliar=10;
 	public static int toleranciaAmarilloFamiliar=0;
 	public static int toleranciaRojoFamiliar=0;
 	//Fecha fecha = new Fecha();
@@ -40,6 +40,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 	CargarPersonas cargarPersonas = new CargarPersonas();
 	CargarArticulos cargarArticulos = new CargarArticulos();
 	FormularioArticulo registrarArticulo = new FormularioArticulo();
+	Configuracion configuracion = new Configuracion();
 	public static ConsultarArticulos consultarArticulos = new ConsultarArticulos();
 	public static Fecha fecha = new Fecha();
 	
@@ -56,9 +57,11 @@ public class BibliotecaLUKRIO implements MouseListener {
 		vPrincipal.setTitle("Biblioteca LUKRIO");
         creaBotones();
         
-        ImageIcon icon=new ImageIcon("RedDragon.jpg");
+        fecha.fechaInicial();
+        
+        ImageIcon icon=new ImageIcon("imagenes/RedDragon.jpg");
 		Image icono = icon.getImage();  //Se obtiene la imagen del icono
-		ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(600,360,Image.SCALE_SMOOTH)); //Cambiamos el tamaÃ±o de la imagen
+		ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(600,360,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
 		ImagenFondo fondo = new ImagenFondo(iconoEscalado.getImage());
 		vPrincipal.getContentPane().add(fondo);
 		
@@ -124,6 +127,11 @@ public class BibliotecaLUKRIO implements MouseListener {
         BibliotecaLUKRIO biblioteca=new BibliotecaLUKRIO();
         biblioteca.vPrincipal.setVisible(true);
     }
+    public void enviarCorreos(){
+    	for(int i=0;i<articulos.size();i++){
+    		articulos.get(i).cambiarTolerancia();
+    	}
+    }
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==bRegistrarPersonas){
@@ -142,6 +150,13 @@ public class BibliotecaLUKRIO implements MouseListener {
 			consultarArticulos.ventanaArticulos.setVisible(true);
 		}else if(e.getSource()==bCargarArticulos){
 			cargarArticulos.listarImagenes();
+		}else if(e.getSource()==bActividadesRecientes){
+			configuracion.vConfig.setVisible(true);
+		}else if(e.getSource()==bAdelantarDia){
+			fecha.setDia(1);
+			enviarCorreos();
+			consultarArticulos.scroll.leeArticulo();
+			System.out.println(fecha.getDia()+"  "+fecha.getMes()+"   "+fecha.getAno());
 		}
 	}
 	@Override

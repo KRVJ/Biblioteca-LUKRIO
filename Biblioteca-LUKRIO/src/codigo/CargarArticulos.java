@@ -10,7 +10,7 @@ import javax.swing.JFileChooser;
 public class CargarArticulos {
 	public void listarImagenes(){
 		JFileChooser chooser = new JFileChooser();
-		File F=new File("c:/");  //Direccion principal donde se abrir√° la ventana de busqueda.
+		File F=new File("c:/");  //Direccion principal donde se abrir· la ventana de busqueda.
 		File NameDir = null,NamePath = null;
 		int Checker;
 		chooser.setCurrentDirectory(F);
@@ -34,7 +34,7 @@ public class CargarArticulos {
                 System.out.println(listFiles[i].getAbsolutePath());
                 ImageIcon icon=new ImageIcon(listFiles[i].getAbsolutePath());
         		Image icono = icon.getImage();  //Se obtiene la imagen del icono
-        		ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(200,200,Image.SCALE_SMOOTH)); //Cambiamos el tama√±o de la imagen
+        		ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(200,200,Image.SCALE_SMOOTH)); //Cambiamos el tamaÒo de la imagen
         		imagenesListas.add(iconoEscalado);
             }catch(Exception exception){
             	System.out.println("catch");

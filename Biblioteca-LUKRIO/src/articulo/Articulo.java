@@ -16,6 +16,7 @@ public class Articulo implements MouseListener{
 	int calificacion;
 	int carnetPersona=0;
 	String tipo=null;
+	String tipoPersona=null;
 	JButton bPrestar,bEliminar,bPrestar2;
 	int diaDevolucion=0;
 	int mesDevolucion=0;
@@ -25,9 +26,7 @@ public class Articulo implements MouseListener{
 	JFrame ventanaCarnet;
 	String alerta="verde";
 	JTextField entradaCarnet;
-	Fecha fecha = new Fecha();
-	Articulo(){
-	}
+	public Fecha fecha = new Fecha();
 	//Setters y getters que comparten las subClases que heredan de Artículo.
 	public void setNumero(int numero){
 		this.numero=numero;
@@ -84,7 +83,7 @@ public class Articulo implements MouseListener{
 		return prestado;
 	}
 	public void devolver(){
-		prestado=false;
+		setPrestado(false);
 		tipoAlerta="verde";
 		diaDevolucion=0;
 		mesDevolucion=0;
@@ -123,49 +122,53 @@ public class Articulo implements MouseListener{
 	}
 	public void prestarArticulo(int numeroCarnet){
 		boolean existePersona=false;
-		String tipo=null;
+		String tipoPersona=null;
 		for(int i=0;i<BibliotecaLUKRIO.personas.size();i++){
 			if(BibliotecaLUKRIO.personas.get(i).getCarnet()==numeroCarnet){
 				existePersona=true;
-				tipo=BibliotecaLUKRIO.personas.get(i).getTipo();
+				tipoPersona=BibliotecaLUKRIO.personas.get(i).getTipo();
+				System.out.println(BibliotecaLUKRIO.personas.get(i).getTipo());
 				break;
 			}
 		}
 		if(existePersona){
 			ventanaCarnet.setVisible(false);
+			setPrestado(true);
 			bPrestar.setText("Devolver");
 			carnetPersona=numeroCarnet;
 			entradaCarnet.setText("Carnet");
 			setAlerta("verde");
 			fecha.fechaInicial();
-			this.tipo=tipo;
+			this.tipoPersona=tipoPersona;
 			setFechaDevolucion();
+			BibliotecaLUKRIO.consultarArticulos.scroll.leeArticulo();
 		}else{
 			Component frame=null;
 			JOptionPane.showMessageDialog(frame,"La persona con el número de carnet: "+numeroCarnet+" no existe.");
 		}
 	}
 	public void setFechaDevolucion(){
+		System.out.println(tipo+"  "+alerta);
 		if(alerta=="verde"){
-			if(tipo=="estudiante"){
+			if(tipoPersona=="estudiante"){
 				fecha.setDia(BibliotecaLUKRIO.toleranciaVerdeEstudiante);
-			}else if(tipo=="colega"){
+			}else if(tipoPersona=="colega"){
 				fecha.setDia(BibliotecaLUKRIO.toleranciaVerdeColega);
 			}else{
 				fecha.setDia(BibliotecaLUKRIO.toleranciaVerdeFamiliar);
 			}
 		}else if(alerta=="amarillo"){
-			if(tipo=="estudiante"){
+			if(tipoPersona=="estudiante"){
 				fecha.setDia(BibliotecaLUKRIO.toleranciaAmarilloEstudiante);
-			}else if(tipo=="colega"){
+			}else if(tipoPersona=="colega"){
 				fecha.setDia(BibliotecaLUKRIO.toleranciaAmarilloColega);
 			}else{
 				fecha.setDia(BibliotecaLUKRIO.toleranciaAmarilloFamiliar);
 			}
 		}else if(alerta=="rojo"){
-			if(tipo=="estudiante"){
+			if(tipoPersona=="estudiante"){
 				fecha.setDia(BibliotecaLUKRIO.toleranciaRojoEstudiante);
-			}else if(tipo=="colega"){
+			}else if(tipoPersona=="colega"){
 				fecha.setDia(BibliotecaLUKRIO.toleranciaRojoColega);
 			}else{
 				fecha.setDia(BibliotecaLUKRIO.toleranciaRojoFamiliar);
@@ -174,31 +177,49 @@ public class Articulo implements MouseListener{
 	}
 	public boolean tiempoAcabado(){
 		if(fecha.getDia()!=0 && fecha.getMes()!=0 && fecha.getAno()!=0){
-			if(BibliotecaLUKRIO.fecha.getAno()<fecha.getAno()){
-				if(BibliotecaLUKRIO.fecha.getMes()<fecha.getMes()){
-					if(BibliotecaLUKRIO.fecha.getDia()<fecha.getDia()){
+			if(BibliotecaLUKRIO.fecha.getAno()==fecha.getAno()){
+				System.out.println("hohola1");
+				if(BibliotecaLUKRIO.fecha.getMes()==fecha.getMes()){
+					System.out.println("hohola2");
+					if(BibliotecaLUKRIO.fecha.getDia()==fecha.getDia()){
+						System.out.println("hohola3");
+						return false;
+					}else if(BibliotecaLUKRIO.fecha.getDia()<fecha.getDia()){
 						return false;
 					}else{return true;}
+				}else if(BibliotecaLUKRIO.fecha.getMes()<fecha.getMes()){
+					return false;
 				}else{return true;}
-			}else{return true;}
-		}else{return false;}
+			}else if(BibliotecaLUKRIO.fecha.getAno()<fecha.getAno()){
+				return false;
+			}else{
+				return true;}
+		}else{
+			return false;}
 	}
 	public void cambiarTolerancia(){
 		if(tiempoAcabado()){
 			if(alerta=="verde"){
-				alerta="amarilla";
+				alerta="amarillo";
+				System.out.println("verde-amarillo");
 				//EnviaCorreo de alerta VERDE-AMARILLA
-			}else if(alerta=="amarilla"){
-				alerta="roja";
+			}else if(alerta=="amarillo"){
+				alerta="rojo";
+				System.out.println("amarilla-rojo");
 				//EnviaCorreo de alerta AMARILLA-ROJA
 			}else{
+				System.out.println("verga");
 				//EnviaCorreo de alerta ROJA
 			}
 			setFechaDevolucion();
+			System.out.println("Devolver: "+fecha.getDia()+"   "+fecha.getMes()+"   "+fecha.getAno());
 		}
 	}
 	public void setAlerta(String alerta){
 		this.alerta=alerta;
+	}
+	public String getAlerta(){
+		return alerta;
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {

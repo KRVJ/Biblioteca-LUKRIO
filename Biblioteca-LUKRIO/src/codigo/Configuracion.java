@@ -1,13 +1,9 @@
 package codigo;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.util.ArrayList;
+
 import java.awt.event.*; 
 
-/*Clase de ventana configuraciones
+/* Clase de ventana configuraciones
  * permite editar todos los valores parametrizables */
 import javax.swing.*;
 
@@ -55,11 +51,12 @@ public class Configuracion implements ActionListener {
 	
 	
     JFrame vConfig;
-	public Ventana() {
+	public Configuracion() {
 		//ventana
 		vConfig=new JFrame();
 		
 	    vConfig.setBounds(400,100,720,400);
+	    vConfig.setLayout(null);
 		
 		vConfig.setTitle("Configuraciones");
 		vConfig.add(CambiarAlertas);
@@ -113,7 +110,7 @@ public class Configuracion implements ActionListener {
         col.setBounds(50,150,150,30);
         col.setFont(fuente);
         est.setBounds(50,220,150,30);
-        est.setFont(fuente);
+       est.setFont(fuente);
         fam.setBounds(50, 290, 150,30);
         fam.setFont(fuente);
         
@@ -157,10 +154,10 @@ public class Configuracion implements ActionListener {
         aceptar.addActionListener(this);
         // agregar widgets a la ventana
         //agrego imagenes
-        am.setIcon(cargarImagen("amarillo.png",80,80));
-        rj.setIcon(cargarImagen("rojo.png",80,80));
-        vd.setIcon(cargarImagen("verde.png",80,80));
-        atras.setIcon(cargarImagen("retroceder.png",50,40));
+        am.setIcon(cargarImagen("imagenes/amarillo.png",80,80));
+        rj.setIcon(cargarImagen("imagenes/rojo.png",80,80));
+        vd.setIcon(cargarImagen("imagenes/verde.png",80,80));
+        atras.setIcon(cargarImagen("imagenes/retroceder.png",50,40));
         
         // esconder widgets
         top1.setVisible(false);
@@ -183,7 +180,7 @@ public class Configuracion implements ActionListener {
         rj.setVisible(false);
         vd.setVisible(false);
         
-        vConfig.setVisible(true);
+        vConfig.setVisible(false);
 	}
 	// define las dimensiones de las imagenes que son colocadas en los botones
 		public ImageIcon cargarImagen(String direccion,int width,int heigth){
@@ -192,6 +189,7 @@ public class Configuracion implements ActionListener {
 		    ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(width,heigth,Image.SCALE_SMOOTH));
 		    return iconoEscalado;
 		}
+    //realiza las acciones de los botones
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -227,6 +225,7 @@ public class Configuracion implements ActionListener {
 		// opcion cambiar Alertas
 		else if(e.getSource()==CambiarAlertas){
 			valor="cambiarA";
+			limite.setText("");
 			col.setVisible(true);
 	        est.setVisible(true);
 	        fam.setVisible(true);
@@ -279,22 +278,40 @@ public class Configuracion implements ActionListener {
 		// configuración manual
 		else if(e.getSource()==manual){
 			
+			
 		}
 		// método aceptar
 		else if(e.getSource()==aceptar){
 			if(valor=="top"){
-				System.out.println(valor);
+				// cambiar top
 				
 			}
 			else if(valor=="cambiarA"){
-				System.out.println(valor);
+				//cambiar alertas
 			}
 			else if(valor=="masP"){
-				System.out.println(valor);
+				//cambiar más prestados
 			}
-			
+		}
+		else if(e.getSource()==atras){
+			//regresar
 		}
 		
 	   
 		
+	}
+	@Override
+	public String toString() {
+		return "Ventana [fuente=" + fuente + "\n CambiarAlertas="
+				+ CambiarAlertas + "\n top=" + top + "\n CambiarMasPrestados="
+				+ CambiarMasPrestados + "\n manual=" + manual + "\n salir="
+				+ salir + "\n aceptar=" + aceptar + "\n top1=" + top1
+				+ "\n prest=" + prest + "\n rango=" + rango + "\n alertas="
+				+ alertas + ", col=" + col + ", est=" + est + ", fam=" + fam
+				+ "\n limite=" + limite + "\n meses=" + meses + "\n amarC="
+				+ amarC + "\n amarE=" + amarE + "\n amarF=" + amarF + "\n verdC="
+				+ verdC + "\n verdE=" + verdE + "\n verdF=" + verdF + "\n rojC="
+				+ rojC + "\n rojE=" + rojE + "\n rojF=" + rojF + "\n am=" + am
+				+ "\n rj=" + rj + "\n vd=" + vd + "\n at=" + at + "\n atras="
+				+ atras + "\n vConfig=" + vConfig + "]";
 	}}

@@ -41,6 +41,12 @@ public class Fecha {
 		this.mes = objFecha.get(Calendar.MONTH)+1;   //Gregorian calendar comienza en o por ello le agregamos 1
 		this.dia = objFecha.get(Calendar.DAY_OF_MONTH);
 	}
+	public String toString(){
+		String msg="\n"+"\n"+"Año:  "+getAno()+"\n"+"\n";
+		msg+="Mes:  "+getMes()+"\n"+"\n";
+		msg+="Dia  "+getDia()+"\n"+"\n";
+		return msg;
+	}
 }
 
 

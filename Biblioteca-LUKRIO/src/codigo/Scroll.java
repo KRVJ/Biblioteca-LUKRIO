@@ -106,12 +106,22 @@ public class Scroll extends JPanel implements MouseListener{
 	    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
 	    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
 	    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
+	    			if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
+	    				System.out.println("Entra al prestado");
+	    				anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString(),x+500,y,16);
+	    				ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
+	    				Image icono = icon.getImage();  //Se obtiene la imagen del icono
+	    				ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(100,100,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
+	    				anadirPortada(iconoEscalado,x+650,y);
+	    			}else{
+	    				anadirJTextArea("Sin Prestar",x+500,y+70,16);
+	    			}
 	    			if(tipo=="libro"){
-	    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y);
+	    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
 	    			}else if(tipo=="revista"){
-	    				anadirJTextArea(((Revista)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y);
+	    				anadirJTextArea(((Revista)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
 	    			}else if(tipo=="pelicula"){
-	    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y);
+	    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
 	    			}
 	    			y+=210;
 	    		}
@@ -134,12 +144,27 @@ public class Scroll extends JPanel implements MouseListener{
 		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
 		    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
 		    			y+=210;
+		    			if(busco=="libro"){
+		    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+		    			}else if(busco=="revista"){
+		    				anadirJTextArea(((Revista)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+		    			}else if(busco=="pelicula"){
+		    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+		    			}
+		    			if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
+		    				System.out.println("Entra al prestado");
+		    				anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString(),x+500,y,16);
+		    				ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
+		    				Image icono = icon.getImage();  //Se obtiene la imagen del icono
+		    				ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(100,100,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
+		    				anadirPortada(iconoEscalado,x+650,y);
+		    			}else{
+		    				anadirJTextArea("Sin Prestar",x+500,y+70,16);
+		    			}
 		    		}
 		    	}cont--;
     		}
     	}
-    	BibliotecaLUKRIO.consultarArticulos.ventanaArticulos.setVisible(false);
-    	BibliotecaLUKRIO.consultarArticulos.ventanaArticulos.setVisible(true);
     }
     public void anadirBoton(JButton boton,int x,int y){
         boton.setLocation(x,y);
@@ -149,6 +174,7 @@ public class Scroll extends JPanel implements MouseListener{
     	JLabel label = new JLabel();
     	label.setBounds(x, y, 200, 200);
     	label.setIcon(imagen);
+    	label.setOpaque(false);
     	panel.add(label);    	
     }
     public void anadirLabel(String info,int x,int y){
@@ -163,13 +189,14 @@ public class Scroll extends JPanel implements MouseListener{
     	radioButton.setText(nombre);
     	panel.add(radioButton);    	
     }
-    public void anadirJTextArea(String nombre,int x,int y){
+    public void anadirJTextArea(String nombre,int x,int y,int letra){
+    	System.out.println(nombre);
     	JTextArea informacion = new JTextArea();
     	informacion.setBounds(x, y, 200, 170);
     	informacion.setText(nombre);
     	informacion.setEditable(false);
     	informacion.setOpaque(false);
-    	informacion.setFont(new Font(null, Font.BOLD, 12));
+    	informacion.setFont(new Font(null, Font.BOLD,letra));
     	panel.add(informacion);
     }
 	@Override
