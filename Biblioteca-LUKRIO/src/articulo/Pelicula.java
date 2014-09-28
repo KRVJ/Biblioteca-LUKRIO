@@ -6,7 +6,7 @@ public class Pelicula extends Articulo{
 	String editorial,edicion;
 	int numeroLibro;
 	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,
-			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta){
+			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta,int carnet,String tipoPersona){
 		setPrestado(prestado);
 		setTitulo(lTitulo);
 		setAutorProductor(lAutor);
@@ -16,9 +16,11 @@ public class Pelicula extends Articulo{
 		setPortada(lPortada);
 		setNumero(numero);
 		creaBotones();
+		setTipoPersona(tipoPersona);
 		super.fecha.setAno(ano);
 		super.fecha.setMes(mes);
 		super.fecha.setDia(dia);
+		setNumero(carnet);
 		setDireccion(lugar);
 		setAlerta(lalerta);
 		setTipo("pelicula");

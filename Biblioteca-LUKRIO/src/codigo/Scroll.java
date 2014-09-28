@@ -84,6 +84,8 @@ public class Scroll extends JPanel implements MouseListener{
         JScrollPane scrollpane2 =  getPanel(d2);
         this.add(scrollpane2);
         scrollpane2.setBounds(0,0,895,552);
+        this.setVisible(false);
+        this.setVisible(true);
     }
     public void leeArticulo(){
     	int largo=0;
@@ -102,13 +104,11 @@ public class Scroll extends JPanel implements MouseListener{
     	if(tipo!="todos"){
 	    	for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
 	    		if(BibliotecaLUKRIO.articulos.get(i).getTipo()==tipo){
-	    			System.out.println(tipo);
 	    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
 	    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
 	    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
 	    			if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
-	    				System.out.println("Entra al prestado");
-	    				anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString(),x+500,y,16);
+	    				anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString()+"Carnet: "+BibliotecaLUKRIO.articulos.get(i).getNumero(),x+500,y,12);
 	    				ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
 	    				Image icono = icon.getImage();  //Se obtiene la imagen del icono
 	    				ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(100,100,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
@@ -139,7 +139,6 @@ public class Scroll extends JPanel implements MouseListener{
     			}
 	    		for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
 		    		if(BibliotecaLUKRIO.articulos.get(i).getTipo()==busco){
-		    			System.out.println(tipo);
 		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
 		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
 		    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
@@ -151,7 +150,6 @@ public class Scroll extends JPanel implements MouseListener{
 		    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
 		    			}
 		    			if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
-		    				System.out.println("Entra al prestado");
 		    				anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString(),x+500,y,16);
 		    				ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
 		    				Image icono = icon.getImage();  //Se obtiene la imagen del icono
@@ -190,7 +188,6 @@ public class Scroll extends JPanel implements MouseListener{
     	panel.add(radioButton);    	
     }
     public void anadirJTextArea(String nombre,int x,int y,int letra){
-    	System.out.println(nombre);
     	JTextArea informacion = new JTextArea();
     	informacion.setBounds(x, y, 200, 170);
     	informacion.setText(nombre);

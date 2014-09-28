@@ -208,15 +208,15 @@ public class FormularioArticulo implements MouseListener {
 			if(tipoSeleccion=="libro"){
 				BibliotecaLUKRIO.articulos.add(new Libro(entradaTitulo.getText(),entradaAutor.getText(),
 						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,
-						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde"));
+						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde",0,"nadie"));
 			}else if(tipoSeleccion=="pelicula"){
 				BibliotecaLUKRIO.articulos.add(new Pelicula(entradaTitulo.getText(),entradaAutor.getText(),
 						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,
-						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde"));
+						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde",0,"nadie"));
 			}else if(tipoSeleccion=="revista"){
 				BibliotecaLUKRIO.articulos.add(new Revista(entradaTitulo.getText(),entradaAutor.getText(),
 						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,
-						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde"));
+						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde",0,"nadie"));
 			}
 			BibliotecaLUKRIO.numeroArticulo++;
 			Component frame = null;

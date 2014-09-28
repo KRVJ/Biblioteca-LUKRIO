@@ -21,17 +21,17 @@ public class BibliotecaLUKRIO implements MouseListener {
 	public static ArrayList<Articulo>articulos=new ArrayList<Articulo>();
 	static int carnet=20140000;
 	static int numeroArticulo=0;
-	public static int toleranciaVerdeEstudiante=10;
-	public static int toleranciaAmarilloEstudiante=0;
-	public static int toleranciaRojoEstudiante=0;
+	public static int toleranciaVerdeEstudiante=40;
+	public static int toleranciaAmarilloEstudiante=25;
+	public static int toleranciaRojoEstudiante=10;
 	
-	public static int toleranciaVerdeColega=10;
-	public static int toleranciaAmarilloColega=0;
-	public static int toleranciaRojoColega=0;
+	public static int toleranciaVerdeColega=45;
+	public static int toleranciaAmarilloColega=30;
+	public static int toleranciaRojoColega=15;
 	
-	public static int toleranciaVerdeFamiliar=10;
-	public static int toleranciaAmarilloFamiliar=0;
-	public static int toleranciaRojoFamiliar=0;
+	public static int toleranciaVerdeFamiliar=50;
+	public static int toleranciaAmarilloFamiliar=40;
+	public static int toleranciaRojoFamiliar=30;
 	//Fecha fecha = new Fecha();
 	JFrame vPrincipal;
 	
@@ -43,6 +43,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 	Configuracion configuracion = new Configuracion();
 	public static ConsultarArticulos consultarArticulos = new ConsultarArticulos();
 	public static Fecha fecha = new Fecha();
+	public static Mail correo= new Mail();
 	
 	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bActividadesRecientes,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
@@ -66,6 +67,11 @@ public class BibliotecaLUKRIO implements MouseListener {
 		vPrincipal.getContentPane().add(fondo);
 		
         vPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cargarArticulos.listarImagenes("articulosGuardados","articulosGuardados/Articulos.txt");
+        try {
+			cargarPersonas.cargar("personasRegistradas/archivo.txt");
+		} catch (IOException e) {
+		}
 	}
 	public void creaBotones(){
 		bRegistrarPersonas=new JButton();
@@ -140,8 +146,8 @@ public class BibliotecaLUKRIO implements MouseListener {
 			consultarPersonas.ventanaConsultas.setVisible(true);
 		}else if(e.getSource()==bCargarPersonas){
 			try {
-				cargarPersonas.cargar();
-			} catch (IOException e1) {
+				cargarPersonas.cargarArchivo();
+			} catch (Exception e1) {
 			}
 		}else if(e.getSource()==bRegistrarArticulos){
 			FormularioArticulo.vRegistroLibros.setVisible(true);
@@ -149,14 +155,13 @@ public class BibliotecaLUKRIO implements MouseListener {
 			//consultarArticulos.scroll.leeArticulo("libro");
 			consultarArticulos.ventanaArticulos.setVisible(true);
 		}else if(e.getSource()==bCargarArticulos){
-			cargarArticulos.listarImagenes();
+			cargarArticulos.cargarCarpeta();
 		}else if(e.getSource()==bActividadesRecientes){
 			configuracion.vConfig.setVisible(true);
 		}else if(e.getSource()==bAdelantarDia){
 			fecha.setDia(1);
 			enviarCorreos();
 			consultarArticulos.scroll.leeArticulo();
-			System.out.println(fecha.getDia()+"  "+fecha.getMes()+"   "+fecha.getAno());
 		}
 	}
 	@Override

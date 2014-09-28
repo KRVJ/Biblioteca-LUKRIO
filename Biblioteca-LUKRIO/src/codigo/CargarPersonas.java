@@ -13,8 +13,7 @@ import persona.Estudiante;
 import persona.Familiar;
 
 public class CargarPersonas {
-	public void cargar() throws IOException{
-		//Abrir un archivo desde la base de datos
+	public void cargarArchivo(){
 		String direccion = null;
 		JFileChooser chooser = new JFileChooser();
 		File F=new File("c:/");  //Direccion principal donde se abrirá la ventana de busqueda.
@@ -26,21 +25,22 @@ public class CargarPersonas {
 			NameDir=chooser.getCurrentDirectory();
 			NamePath=chooser.getSelectedFile();
 			direccion=NamePath.getAbsolutePath();
-			System.out.println(NameDir.getName());
-			System.out.println((NamePath.getAbsolutePath().split(NameDir.getName()))[0]);
+			try {
+				cargar(direccion);
+			} catch (IOException e) {
+			}
 		}
+	}
+	public void cargar(String direccion) throws IOException{
+		//Abrir un archivo desde la base de datos
 		try{
 			//Trata de leer el archivo por lineas.
-			
-			File archivo = null;
-		    FileReader fr = null;
-		    BufferedReader br = null;
-			archivo = new File (direccion);
-	        fr = new FileReader (archivo);
+		    File archivo = new File (direccion);
+		    FileReader fr = new FileReader (archivo);
 	        
 	        @SuppressWarnings({ "unused", "resource" })   //Lo pedia el BufferedReader
 	        
-			BufferedReader bufferedReader = br = new BufferedReader(fr);
+			BufferedReader br = new BufferedReader(fr);
 	        String linea = null;
 	        String[] cInformacion = null;
 	        int numLinea=1;

@@ -7,7 +7,7 @@ public class Libro extends Articulo{
 	int numeroLibro;
 	//Constructor con los parametros para asignar los valores iniciales.
 	public Libro(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,
-			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta){
+			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta,int carnet,String tipoPersona){
 		setPrestado(prestado);
 		setTitulo(lTitulo);
 		setAutorProductor(lAutor);
@@ -18,9 +18,11 @@ public class Libro extends Articulo{
 		setNumero(numero);
 		setDireccion(lugar);
 		creaBotones();
+		setTipoPersona(tipoPersona);
 		super.fecha.setAno(ano);
 		super.fecha.setMes(mes);
 		super.fecha.setDia(dia);
+		setNumero(carnet);
 		setAlerta(lalerta);
 		setTipo("libro");
 	}

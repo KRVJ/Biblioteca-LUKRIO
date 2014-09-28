@@ -8,64 +8,56 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import articulo.Libro;
 import articulo.Pelicula;
 import articulo.Revista;
 
 public class CargarArticulos {
-	public void listarImagenes(){
+	public void cargarCarpeta(){
+		JFileChooser chooser = new JFileChooser();
+		File F=new File("c:/");  //Direccion principal donde se abrirá la ventana de busqueda.
+		File NamePath = null;
+		int Checker;
+		chooser.setCurrentDirectory(F);
+		Checker = chooser.showOpenDialog(null);
+		if(Checker==JFileChooser.APPROVE_OPTION){
+			NamePath=chooser.getSelectedFile();
+			System.out.println(NamePath.getAbsolutePath());
+			listarImagenes(NamePath.getParent(),NamePath.getAbsolutePath());
+		}
+	}
+	public void listarImagenes(String carpeta,String direccion){
 		try{
-			JFileChooser chooser = new JFileChooser();
-			String direccion = null;
-			File F=new File("c:/");  //Direccion principal donde se abrirï¿½ la ventana de busqueda.
-			File NameDir = null,NamePath = null;
-			int Checker;
-			chooser.setCurrentDirectory(F);
-			Checker = chooser.showOpenDialog(null);
-			if(Checker==JFileChooser.APPROVE_OPTION){
-				NameDir=chooser.getCurrentDirectory();
-				NamePath=chooser.getSelectedFile();
-				System.out.println(NameDir.getName());
-				System.out.println(NamePath.getParent());
-			}
 			File directory;
 		    File[]listFiles;
-		    directory=new File(NamePath.getParent());
+		    directory=new File(carpeta);
 		    listFiles=directory.listFiles();
 		    ArrayList <String> direccionesImagenes = new ArrayList<String>();
 		    ArrayList<ImageIcon> imagenesListas=new ArrayList<ImageIcon>();
-		    
-		    //===============================================
-		    
-		    direccion=NamePath.getAbsolutePath();
-			System.out.println(NameDir.getName());
-			System.out.println((NamePath.getAbsolutePath().split(NameDir.getName()))[0]);
 			try{
 				//Trata de leer el archivo por lineas.
-				File archivo = null;
-			    FileReader fr = null;
-			    BufferedReader br = null;
-				archivo = new File (direccion);
-		        fr = new FileReader (archivo);
+				File archivo = new File (direccion);
+				FileReader fr = new FileReader (archivo);
 		        
 		        @SuppressWarnings({ "unused", "resource" })   //Sobreescribimos el SuppresWarnings
 		        
-				BufferedReader bufferedReader = br = new BufferedReader(fr);
+				BufferedReader br = new BufferedReader(fr);
 		        String linea = null;
 		        String[] cInformacion = null;
 		        int numLinea=1;
 		        int personasRegistradas=0;
 		        boolean finalizado=false;
+		        int cont=1;
 				while(finalizado==false){
 				   linea=br.readLine();
 		           if(linea!=null){
 			           	cInformacion=linea.split(" ");
-			           	if(cInformacion.length==12){
+			           	if(cInformacion.length==14){
 			           		ImageIcon imagen=null;
 			           		String lugar=null;
 						    for(int i=0;i<listFiles.length;i++){
-						    	System.out.println(listFiles[i].getAbsolutePath());
 						    	if(listFiles[i].getName().toString().equals(cInformacion[0])){
 						            imagen=modificarTamano(new ImageIcon(listFiles[i].getAbsolutePath()));
 						            lugar=listFiles[i].getAbsolutePath().toString();
@@ -83,31 +75,44 @@ public class CargarArticulos {
 						    	mes=Integer.parseInt(cInformacion[9]);
 				    			dia=Integer.parseInt(cInformacion[10]);
 						    }
-						    if(cInformacion[1].equals("libro")){
-						    	BibliotecaLUKRIO.articulos.add(new Libro(cInformacion[2],cInformacion[3],
+						    boolean existePersona=false;
+							for(int i=0;i<BibliotecaLUKRIO.personas.size();i++){
+								if(BibliotecaLUKRIO.personas.get(i).getCarnet()==Integer.parseInt(cInformacion[12])){
+									existePersona=true;
+									break;
+								}
+							}
+							if(existePersona==false && prestado){
+								prestado=false;
+								ano=0;
+						    	mes=0;
+				    			dia=0;
+				    			JOptionPane.showMessageDialog(null,"Este árticulo está prestado a una persona no registrada. Linea: "+cont+" "
+										+ ". Por lo tanto se registrara el árticulo como no prestado");
+							}
+							if(cInformacion[1].equals("libro")){
+							    	BibliotecaLUKRIO.articulos.add(new Libro(cInformacion[2],cInformacion[3],
 						    			cInformacion[4],cInformacion[5],imagen,Integer.parseInt(cInformacion[6]),
-						    			BibliotecaLUKRIO.numeroArticulo,lugar,prestado,ano,mes,dia,cInformacion[11]));
-						    }else if(cInformacion[1].equals("pelicula")){
-						    	BibliotecaLUKRIO.articulos.add(new Pelicula(cInformacion[2],cInformacion[3],
-						    			cInformacion[4],cInformacion[5],imagen,Integer.parseInt(cInformacion[6]),
-						    			BibliotecaLUKRIO.numeroArticulo,lugar,prestado,ano,mes,dia,cInformacion[11]));
-						    }else if(cInformacion[1].equals("revista")){
-						    	BibliotecaLUKRIO.articulos.add(new Revista(cInformacion[2],cInformacion[3],
-						    			cInformacion[4],cInformacion[5],imagen,Integer.parseInt(cInformacion[6]),
-						    			BibliotecaLUKRIO.numeroArticulo,lugar,prestado,ano,mes,dia,cInformacion[11]));
-						    }
-						  //Si se encontro la linea bien [GUARDAMOS ARTICULO]
-						  //Si se encontro la linea bien [GUARDAMOS ARTICULO]
-						    /*int x=10,y=10;
-						    System.out.println(imagenesListas.size());
-						    for (int j=0;j<imagenesListas.size();j++){
-						    	BibliotecaLUKRIO.consultarArticulos.scroll.anadirPortada(imagenesListas.get(j),x,y);
-						    	y+=200;
-					      }*/
+						    			BibliotecaLUKRIO.numeroArticulo,lugar,prestado,ano,mes,dia,cInformacion[11],
+							   			Integer.parseInt(cInformacion[12]),cInformacion[13]));
+							}else if(cInformacion[1].equals("pelicula")){
+							    	BibliotecaLUKRIO.articulos.add(new Pelicula(cInformacion[2],cInformacion[3],
+							   			cInformacion[4],cInformacion[5],imagen,Integer.parseInt(cInformacion[6]),
+							   			BibliotecaLUKRIO.numeroArticulo,lugar,prestado,ano,mes,dia,cInformacion[11],
+							   			Integer.parseInt(cInformacion[12]),cInformacion[13]));
+						   }else if(cInformacion[1].equals("revista")){
+								   BibliotecaLUKRIO.articulos.add(new Revista(cInformacion[2],cInformacion[3],
+									   cInformacion[4],cInformacion[5],imagen,Integer.parseInt(cInformacion[6]),
+							    		BibliotecaLUKRIO.numeroArticulo,lugar,prestado,ano,mes,dia,cInformacion[11],
+							    		Integer.parseInt(cInformacion[12]),cInformacion[13]));
+						   }
+			           	}else{
+			           		JOptionPane.showMessageDialog(null,"Hay un error de información en la línea: "+cont);
 			           	}
+			           	cont++;
 		           }else{
-			        	finalizado=true;
-			        }
+		        	   finalizado=true;
+		           }
 				}
 			}catch(Exception exception){
 				//No se leyo el archivo
