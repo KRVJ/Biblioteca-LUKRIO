@@ -69,7 +69,7 @@ public class BibliotecaLUKRIO implements MouseListener {
         vPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cargarArticulos.listarImagenes("articulosGuardados","articulosGuardados/Articulos.txt");
         try {
-			cargarPersonas.cargar("personasRegistradas/archivo.txt");
+			cargarPersonas.cargar("personasRegistradas/archivo.txt",true);
 		} catch (IOException e) {
 		}
 	}

@@ -47,7 +47,7 @@ public class ConsultarPersonas implements MouseListener{
 		table.addMouseListener(this);  
 		
 		JScrollPane scrollPane=new JScrollPane(table);
-		scrollPane.setBounds(10,40,970,470);
+		scrollPane.setBounds(10,40,970,430);
 		ventanaConsultas.add(scrollPane);
 		
 		crearInterfazConsultar();
