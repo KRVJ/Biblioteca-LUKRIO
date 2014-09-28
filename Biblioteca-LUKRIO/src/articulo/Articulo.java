@@ -12,16 +12,16 @@ import codigo.Fecha;
 public class Articulo implements MouseListener{
 	String titulo,autorProductor;
 	ImageIcon portada;
-	public boolean prestado=false;
+	public boolean prestado;
 	int calificacion;
-	int carnetPersona=0;
+	int carnetPersona;
 	String tipo=null;
-	String tipoPersona=null;
+	String tipoPersona;
 	JButton bPrestar,bEliminar,bPrestar2;
-	String tipoAlerta="verde";
+	String tipoAlerta;
 	int numero;
 	JFrame ventanaCarnet;
-	String alerta="verde";
+	String alerta;
 	String direccionImagen;
 	JTextField entradaCarnet;
 	public Fecha fecha = new Fecha();
@@ -140,13 +140,15 @@ public class Articulo implements MouseListener{
 			entradaCarnet.setText("Carnet");
 			setAlerta("verde");
 			fecha.fechaInicial();
-			this.tipoPersona=tipoPersona;
+			setTipoPersona(tipoPersona);
 			setFechaDevolucion();
 			BibliotecaLUKRIO.consultarArticulos.scroll.leeArticulo();
 		}else{
-			Component frame=null;
-			JOptionPane.showMessageDialog(frame,"La persona con el número de carnet: "+numeroCarnet+" no existe.");
+			JOptionPane.showMessageDialog(null,"La persona con el número de carnet: "+numeroCarnet+" no existe.");
 		}
+	}
+	public void setTipoPersona(String tipoPersona){
+		this.tipoPersona=tipoPersona;
 	}
 	public void setFechaDevolucion(){
 		System.out.println(tipo+"  "+alerta);
@@ -179,11 +181,8 @@ public class Articulo implements MouseListener{
 	public boolean tiempoAcabado(){
 		if(fecha.getDia()!=0 && fecha.getMes()!=0 && fecha.getAno()!=0){
 			if(BibliotecaLUKRIO.fecha.getAno()==fecha.getAno()){
-				System.out.println("hohola1");
 				if(BibliotecaLUKRIO.fecha.getMes()==fecha.getMes()){
-					System.out.println("hohola2");
 					if(BibliotecaLUKRIO.fecha.getDia()==fecha.getDia()){
-						System.out.println("hohola3");
 						return false;
 					}else if(BibliotecaLUKRIO.fecha.getDia()<fecha.getDia()){
 						return false;
@@ -200,20 +199,28 @@ public class Articulo implements MouseListener{
 	}
 	public void cambiarTolerancia(){
 		if(tiempoAcabado()){
-			if(alerta=="verde"){
-				alerta="amarillo";
-				System.out.println("verde-amarillo");
+			if(alerta.equals("verde")){
+				setAlerta("amarillo");
+				BibliotecaLUKRIO.correo.setMail("kntor497@gmail.com", "kramirezvegaj@hotmail.com","Se le ha acabado el"
+						+ "primero tiempo para entregar el libro, la alerta pasarada de verde a "
+						+ "amarillo y se le otorgaran unos dias mas para la devolución del mismo."
+						+ " Gracias!!","mail", "1123581321kyk");
 				//EnviaCorreo de alerta VERDE-AMARILLA
-			}else if(alerta=="amarillo"){
-				alerta="rojo";
-				System.out.println("amarilla-rojo");
+			}else if(alerta.equals("amarillo")){
+				setAlerta("rojo");
+				BibliotecaLUKRIO.correo.setMail("kntor497@gmail.com", "kramirezvegaj@hotmail.com","Se le ha acabado el"
+						+ "segundo tiempo para entregar el libro, la alerta pasarada de amarillo a "
+						+ "amarillo y se le otorgaran unos dias mas para la devolución del mismo."
+						+ " Gracias!!","mail", "1123581321kyk");
 				//EnviaCorreo de alerta AMARILLA-ROJA
 			}else{
-				System.out.println("rojo");
+				BibliotecaLUKRIO.correo.setMail("kntor497@gmail.com", "kramirezvegaj@hotmail.com","Se le ha acabado el"
+						+ "ultimo tiempo para entregar el libro, la alerta pasarada de amarillo a "
+						+ "rojo y se le otorgaran los ultimos dias mas para la devolución del mismo."
+						+ " Gracias!!","mail", "1123581321kyk");
 				//EnviaCorreo de alerta ROJA
 			}
 			setFechaDevolucion();
-			System.out.println("Devolver: "+fecha.getDia()+"   "+fecha.getMes()+"   "+fecha.getAno()+"asdjsadias");
 		}
 	}
 	public void setAlerta(String alerta){
@@ -225,7 +232,6 @@ public class Articulo implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==bEliminar){
-			System.out.println("Eliminar");
 			for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
 				if(BibliotecaLUKRIO.articulos.get(i).getNumero()==this.getNumero()){
 					BibliotecaLUKRIO.articulos.remove(i);
