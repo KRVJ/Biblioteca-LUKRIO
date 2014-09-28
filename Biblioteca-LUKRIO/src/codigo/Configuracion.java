@@ -12,19 +12,19 @@ public class Configuracion implements ActionListener {
 	Font fuente=new Font("TimesRoman", Font.BOLD, 18);
 	// creacion de los witgets
 	
-	//botones de la ventana configuraciÃ³n
+	//botones de la ventana configuración
 	JButton  CambiarAlertas= new JButton ("Cambiar alertas"); 
 	JButton  top= new JButton ("Cambiar top ");
-	JButton CambiarMasPrestados = new JButton ("Cambiar mÃ¡s prestados");
+	JButton CambiarMasPrestados = new JButton ("Cambiar más prestados");
 	JButton manual = new JButton("Manual");
 	JButton salir = new JButton("Salir");
 	JButton aceptar= new JButton("Aceptar");
 	
-	// textos de la ventana configuraciÃ³n
-	JTextArea top1= new JTextArea("Ingrese el lÃ­mite del \n         top: ");
+	// textos de la ventana configuración
+	JTextArea top1= new JTextArea("Ingrese el límite del \n         top: ");
 	JTextArea prest= new JTextArea("Ingrese la cantidad minima\n de veces prestadas: ");
 	JTextArea rango= new JTextArea("Ingrese la cantidad de \nmeses del rango: ");
-	JTextArea alertas= new JTextArea("Ingrese el lÃ­mite de las alertas: ");
+	JTextArea alertas= new JTextArea("Ingrese el límite de las alertas: ");
 	JTextArea col= new JTextArea("Colega : ");
 	JTextArea est= new JTextArea("Estudiante : ");
 	JTextArea fam= new JTextArea("Familiar : ");
@@ -180,6 +180,7 @@ public class Configuracion implements ActionListener {
         verdF.setVisible(false);
         rojC.setVisible(false);
         rojE.setVisible(false);
+        rojF.setVisible(false);
         col.setVisible(false);
         est.setVisible(false);
         fam.setVisible(false);
@@ -198,6 +199,15 @@ public class Configuracion implements ActionListener {
 		    ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(width,heigth,Image.SCALE_SMOOTH));
 		    return iconoEscalado;
 		}
+	//REVISA ENTRADA DE NUMERO
+	public boolean revisarNumero(String numero){
+		try{
+			Integer.parseInt(numero);
+			return true;
+		}catch(Exception exception){
+			return false;
+		}
+	}
     //realiza las acciones de los botones
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -260,7 +270,7 @@ public class Configuracion implements ActionListener {
 	        vd.setVisible(true);
 			
 		}
-		//opcion cambiar mÃ¡s prestados
+		//opcion cambiar más prestados
 		else if(e.getSource()==CambiarMasPrestados){
 			imageTop.setVisible(false);
 			imagePila.setVisible(true);
@@ -288,22 +298,39 @@ public class Configuracion implements ActionListener {
 		    vd.setVisible(false);
 			
 		}
-		// configuraciÃ³n manual
+		// configuración manual
 		else if(e.getSource()==manual){
 			
 			
 		}
-		// mÃ©todo aceptar
+		// método aceptar
 		else if(e.getSource()==aceptar){
 			if(valor=="top"){
-				// cambiar top
-				
+				// cambiar top	
 			}
 			else if(valor=="cambiarA"){
-				//cambiar alertas
+				if(revisarNumero(verdE.getText())){
+					BibliotecaLUKRIO.toleranciaVerdeEstudiante=Integer.parseInt(verdE.getText());
+				}if(revisarNumero(verdC.getText())){
+					BibliotecaLUKRIO.toleranciaVerdeColega=Integer.parseInt(verdC.getText());
+				}if(revisarNumero(verdF.getText())){
+					BibliotecaLUKRIO.toleranciaVerdeFamiliar=Integer.parseInt(verdF.getText());
+				}if(revisarNumero(amarE.getText())){
+					BibliotecaLUKRIO.toleranciaAmarilloEstudiante=Integer.parseInt(amarE.getText());
+				}if(revisarNumero(amarC.getText())){
+					BibliotecaLUKRIO.toleranciaAmarilloColega=Integer.parseInt(amarC.getText());
+				}if(revisarNumero(amarF.getText())){
+					BibliotecaLUKRIO.toleranciaAmarilloFamiliar=Integer.parseInt(amarF.getText());
+				}if(revisarNumero(rojE.getText())){
+					BibliotecaLUKRIO.toleranciaRojoEstudiante=Integer.parseInt(rojE.getText());
+				}if(revisarNumero(rojC.getText())){
+					BibliotecaLUKRIO.toleranciaRojoColega=Integer.parseInt(rojC.getText());
+				}if(revisarNumero(limite.getText())){
+					BibliotecaLUKRIO.toleranciaRojoFamiliar=Integer.parseInt(limite.getText());
+				}
 			}
 			else if(valor=="masP"){
-				//cambiar mÃ¡s prestados
+				//cambiar más prestados
 			}
 		}
 		else if(e.getSource()==atras){

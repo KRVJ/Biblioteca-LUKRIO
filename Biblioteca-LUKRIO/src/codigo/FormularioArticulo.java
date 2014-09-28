@@ -27,7 +27,7 @@ import articulo.Revista;
 
 public class FormularioArticulo implements MouseListener {
 	static JFrame vRegistroLibros=new JFrame();
-	
+	static String lugar;
 	JButton bRegistrarArticulo,cargarPortada;
 	static JLabel label=new JLabel();
 	static ImageIcon portada;
@@ -54,13 +54,12 @@ public class FormularioArticulo implements MouseListener {
 	
 	FormularioArticulo(){
 		vRegistroLibros.setLayout(null);
-		vRegistroLibros.setTitle("Cargar Libro");  //Titulo de ventana
+		vRegistroLibros.setTitle("Registrar Artículo");  //Titulo de ventana
 		vRegistroLibros.setSize(550,350);       //Tamaño de ventana
 		vRegistroLibros.setLocation(450,145);  //localizacion de ventana
 		vRegistroLibros.setResizable(false);  //Minimizar ventana
 		crearInterfaz();
 		vRegistroLibros.setVisible(false);   //Oculta la ventana
-		//cargarArchivo();
 	}
 	public void crearInterfaz(){
 		tipoSeleccion="libro";
@@ -179,10 +178,12 @@ public class FormularioArticulo implements MouseListener {
 			try{
 				imagen = ImageIO.read(chooser.getSelectedFile());
 			}catch(Exception exception){}
+			System.out.println(chooser);
 			ImageIcon icon=new ImageIcon(imagen);
 			Image icono = icon.getImage();  //Se obtiene la imagen del icono
 		    ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(200,200,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
 			portada=iconoEscalado;
+			lugar=chooser.getSelectedFile().toString();
 	        label.setIcon(iconoEscalado);
 	        vRegistroLibros.setVisible(false);
 	        vRegistroLibros.setVisible(true);
@@ -206,13 +207,16 @@ public class FormularioArticulo implements MouseListener {
 		&& entradaEdicion.getText().equals("Introduce la edición")==false && entradaEdicion.getText().equals("")==false && label.getIcon()!=null){
 			if(tipoSeleccion=="libro"){
 				BibliotecaLUKRIO.articulos.add(new Libro(entradaTitulo.getText(),entradaAutor.getText(),
-						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,BibliotecaLUKRIO.numeroArticulo));
+						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,
+						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde"));
 			}else if(tipoSeleccion=="pelicula"){
 				BibliotecaLUKRIO.articulos.add(new Pelicula(entradaTitulo.getText(),entradaAutor.getText(),
-						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,BibliotecaLUKRIO.numeroArticulo));
+						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,
+						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde"));
 			}else if(tipoSeleccion=="revista"){
 				BibliotecaLUKRIO.articulos.add(new Revista(entradaTitulo.getText(),entradaAutor.getText(),
-						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,BibliotecaLUKRIO.numeroArticulo));
+						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,
+						BibliotecaLUKRIO.numeroArticulo,lugar,false,0,0,0,"verde"));
 			}
 			BibliotecaLUKRIO.numeroArticulo++;
 			Component frame = null;

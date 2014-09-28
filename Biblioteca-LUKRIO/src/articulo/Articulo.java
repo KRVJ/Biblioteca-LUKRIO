@@ -18,16 +18,20 @@ public class Articulo implements MouseListener{
 	String tipo=null;
 	String tipoPersona=null;
 	JButton bPrestar,bEliminar,bPrestar2;
-	int diaDevolucion=0;
-	int mesDevolucion=0;
-	int anoDevolucion=0;
 	String tipoAlerta="verde";
 	int numero;
 	JFrame ventanaCarnet;
 	String alerta="verde";
+	String direccionImagen;
 	JTextField entradaCarnet;
 	public Fecha fecha = new Fecha();
 	//Setters y getters que comparten las subClases que heredan de Artículo.
+	public void setDireccion(String direccionImagen){
+		this.direccionImagen=direccionImagen;
+	}
+	public String getDireccionImagen(){
+		return direccionImagen;
+	}
 	public void setNumero(int numero){
 		this.numero=numero;
 	}
@@ -85,9 +89,6 @@ public class Articulo implements MouseListener{
 	public void devolver(){
 		setPrestado(false);
 		tipoAlerta="verde";
-		diaDevolucion=0;
-		mesDevolucion=0;
-		anoDevolucion=0;
 		tipo=null;
 	}
 	public void creaBotones(){
@@ -208,11 +209,11 @@ public class Articulo implements MouseListener{
 				System.out.println("amarilla-rojo");
 				//EnviaCorreo de alerta AMARILLA-ROJA
 			}else{
-				System.out.println("verga");
+				System.out.println("rojo");
 				//EnviaCorreo de alerta ROJA
 			}
 			setFechaDevolucion();
-			System.out.println("Devolver: "+fecha.getDia()+"   "+fecha.getMes()+"   "+fecha.getAno());
+			System.out.println("Devolver: "+fecha.getDia()+"   "+fecha.getMes()+"   "+fecha.getAno()+"asdjsadias");
 		}
 	}
 	public void setAlerta(String alerta){

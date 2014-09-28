@@ -5,7 +5,9 @@ import javax.swing.ImageIcon;
 public class Pelicula extends Articulo{
 	String editorial,edicion;
 	int numeroLibro;
-	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,int numero){
+	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,
+			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta){
+		setPrestado(prestado);
 		setTitulo(lTitulo);
 		setAutorProductor(lAutor);
 		setCalificacion(lCalificacion);
@@ -14,6 +16,11 @@ public class Pelicula extends Articulo{
 		setPortada(lPortada);
 		setNumero(numero);
 		creaBotones();
+		super.fecha.setAno(ano);
+		super.fecha.setMes(mes);
+		super.fecha.setDia(dia);
+		setDireccion(lugar);
+		setAlerta(lalerta);
 		setTipo("pelicula");
 	}
 	public void setEditorial(String editorial){

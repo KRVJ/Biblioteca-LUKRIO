@@ -6,7 +6,9 @@ import javax.swing.JButton;
 public class Revista extends Articulo{
 	String editorial,edicion;
 	int numeroRevista;
-	public Revista(String rTitulo,String rAutor,String rEditorial, String rEdicion, ImageIcon rPortada,int rCalificacion,int numero){
+	public Revista(String rTitulo,String rAutor,String rEditorial, String rEdicion, ImageIcon rPortada,int rCalificacion,
+			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta){
+		setPrestado(prestado);
 		setTitulo(rTitulo);
 		setAutorProductor(rAutor);
 		setCalificacion(rCalificacion);
@@ -15,6 +17,11 @@ public class Revista extends Articulo{
 		setPortada(rPortada);
 		setNumero(numero);
 		creaBotones();
+		super.fecha.setAno(ano);
+		super.fecha.setMes(mes);
+		super.fecha.setDia(dia);
+		setDireccion(lugar);
+		setAlerta(lalerta);
 		setTipo("revista");
 	}
 	public void setEditorial(String editorial){

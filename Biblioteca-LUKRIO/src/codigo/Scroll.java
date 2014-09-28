@@ -80,7 +80,7 @@ public class Scroll extends JPanel implements MouseListener{
     }
     public void setDimension(int numero){
     	eliminaElementos();
-        Dimension d2 = new Dimension(860, 250*(numero));
+        Dimension d2 = new Dimension(860, 300*(numero));
         JScrollPane scrollpane2 =  getPanel(d2);
         this.add(scrollpane2);
         scrollpane2.setBounds(0,0,895,552);
@@ -143,7 +143,6 @@ public class Scroll extends JPanel implements MouseListener{
 		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
 		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
 		    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
-		    			y+=210;
 		    			if(busco=="libro"){
 		    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
 		    			}else if(busco=="revista"){
@@ -161,6 +160,7 @@ public class Scroll extends JPanel implements MouseListener{
 		    			}else{
 		    				anadirJTextArea("Sin Prestar",x+500,y+70,16);
 		    			}
+		    			y+=210;
 		    		}
 		    	}cont--;
     		}
