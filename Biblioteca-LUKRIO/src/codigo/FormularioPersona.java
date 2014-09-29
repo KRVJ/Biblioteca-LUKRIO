@@ -3,6 +3,7 @@ package codigo;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.*;
 
 import persona.Colega;
@@ -155,28 +156,47 @@ public class FormularioPersona implements MouseListener{
 				entradaEspecial.getText().equals("Introduce el parentesco")==false && entradaEspecial.getText().equals("Introduce el puesto")==false){
 				//Comprobamos que el teléfono sea un número
 				if(compruebaTelefono(entradaTelefono.getText())){
+					if(entradaCorreo.getText().toString().indexOf("@")!=-1){
+						boolean encontreCarnet;
+						int carnet=0;
+						while(true){
+							encontreCarnet=true;
+							for(int k=0;k<BibliotecaLUKRIO.personas.size();k++){
+								System.out.println(BibliotecaLUKRIO.carnet+" Quiero registrar");
+								System.out.println(BibliotecaLUKRIO.personas.get(k).getCarnet()+" Registrado ya");
+								if(BibliotecaLUKRIO.carnet==BibliotecaLUKRIO.personas.get(k).getCarnet()){
+									System.out.println(false);
+									BibliotecaLUKRIO.carnet++;
+									encontreCarnet=false;
+									break;
+								}
+							}if(encontreCarnet==true){
+								carnet=BibliotecaLUKRIO.carnet;
+								System.out.println(carnet);
+								break;
+							}
+						}
 						if(tipoSeleccion=="estudiante"){
 						BibliotecaLUKRIO.personas.add(new Estudiante(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
-								entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
+								entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),carnet));
 						}else if(tipoSeleccion=="colega"){
 							BibliotecaLUKRIO.personas.add(new Colega(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
-									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
+									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),carnet));
 						}else{
 							BibliotecaLUKRIO.personas.add(new Familiar(entradaNombre.getText(),entradaApellido1.getText(),entradaApellido2.getText(),
-									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),BibliotecaLUKRIO.carnet));
+									entradaTelefono.getText(),entradaCorreo.getText(),entradaEspecial.getText(),carnet));
 						}
-						Component frame = null;
 						formulario.setVisible(false);
 						refrescarFormulario();
-						BibliotecaLUKRIO.carnet++;
-						JOptionPane.showMessageDialog(frame,"La persona se ha registrada con éxito. Su número de carnet es: "+BibliotecaLUKRIO.carnet);
+						JOptionPane.showMessageDialog(null,"La persona se ha registrada con éxito. Su número de carnet es: "+carnet);
+					}else{
+						JOptionPane.showMessageDialog(null,"Por favor inserte un correo válido");
+					}
 				}else{
-					Component frame = null;
-					JOptionPane.showMessageDialog(frame,"Por favor digite un número de teléfono válido");
+					JOptionPane.showMessageDialog(null,"Por favor digite un número de teléfono válido");
 				}
 			}else{
-				Component frame = null;
-				JOptionPane.showMessageDialog(frame,"Por favor llene todos los datos, recuerde que deben tener menos de 10 caracteres y el correo menos de 15 y el teléfono 8 dígitos");
+				JOptionPane.showMessageDialog(null,"Por favor llene todos los datos, recuerde que deben tener menos de 10 caracteres y el correo menos de 15 y el teléfono 8 dígitos");
 			}
 		}
 		else if(seleccionarEstudiante.isSelected()){

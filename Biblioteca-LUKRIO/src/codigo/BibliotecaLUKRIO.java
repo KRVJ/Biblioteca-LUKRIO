@@ -45,7 +45,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 	public static Fecha fecha = new Fecha();
 	public static Mail correo= new Mail();
 	
-	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bActividadesRecientes,
+	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bConfiguracion,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
 	BibliotecaLUKRIO(){
 		consultarArticulos.scroll.leeArticulo();
@@ -53,65 +53,69 @@ public class BibliotecaLUKRIO implements MouseListener {
 		consultarArticulos.ventanaArticulos.setVisible(false);
 		
 		vPrincipal=new JFrame();
-		vPrincipal.setBounds(400,100,600,360);
+		vPrincipal.setBounds(400,100,620,380);
 		vPrincipal.setLayout(null);
 		vPrincipal.setTitle("Biblioteca LUKRIO");
         creaBotones();
         
         fecha.fechaInicial();
         
-        ImageIcon icon=new ImageIcon("imagenes/RedDragon.jpg");
-		Image icono = icon.getImage();  //Se obtiene la imagen del icono
-		ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(600,360,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
-		ImagenFondo fondo = new ImagenFondo(iconoEscalado.getImage());
+        ImagenFondo fondo = new ImagenFondo(cambiarTamañoImagen("imagenes/fondo.jpg",620,380).getImage());
 		vPrincipal.getContentPane().add(fondo);
-		
+		vPrincipal.setResizable(false);
         vPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        cargarArticulos.listarImagenes("articulosGuardados","articulosGuardados/Articulos.txt");
+        
         try {
 			cargarPersonas.cargar("personasRegistradas/archivo.txt",true);
 		} catch (IOException e) {
 		}
+        cargarArticulos.listarImagenes("articulosGuardados","articulosGuardados/Articulos.txt");
+	}
+	public ImageIcon cambiarTamañoImagen(String direccion,int x,int y){
+		ImageIcon icon=new ImageIcon(direccion);
+		Image icono = icon.getImage();  //Se obtiene la imagen del icono
+		ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(x,y,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
+		return iconoEscalado;
 	}
 	public void creaBotones(){
 		bRegistrarPersonas=new JButton();
 		bConsultarPersonas=new JButton();
 		bCargarPersonas=new JButton();
 		bConsultarPersPertamos=new JButton();
-		bActividadesRecientes=new JButton();
+		bConfiguracion=new JButton();
 		bRegistrarArticulos=new JButton();
 		bConsultarArticulos=new JButton();
 		bCargarArticulos=new JButton();
 		bConsultarArtPrestados=new JButton();
 		bAdelantarDia=new JButton();
 		
-		bRegistrarPersonas.setBounds(5,5,150,30);
-		bConsultarPersonas.setBounds(5,75,150,30);
-		bCargarPersonas.setBounds(5,145,150,30);
-		bConsultarPersPertamos.setBounds(5,215,150,30);
-		bActividadesRecientes.setBounds(5,285,150,30);
-		bRegistrarArticulos.setBounds(425,5,150,30);
-		bConsultarArticulos.setBounds(425,75,150,30);
-		bCargarArticulos.setBounds(425,145,150,30);
-		bConsultarArtPrestados.setBounds(425,215,150,30);
-		bAdelantarDia.setBounds(425,285,150,30);
+		bRegistrarPersonas.setBounds(5,5,50,60);
+		bConsultarPersonas.setBounds(5,75,50,60);
+		bCargarPersonas.setBounds(5,145,50,60);
+		bConsultarPersPertamos.setBounds(5,215,50,60);
+		bConfiguracion.setBounds(5,285,50,60);
+		bRegistrarArticulos.setBounds(560,5,50,60);
+		bConsultarArticulos.setBounds(560,75,50,60);
+		bCargarArticulos.setBounds(560,145,50,60);
+		bConsultarArtPrestados.setBounds(560,215,50,60);
+		bAdelantarDia.setBounds(560,285,50,60);
 		
-		bRegistrarPersonas.setText("Registrar Persona");
-		bConsultarPersonas.setText("Consular Personas");
-		bCargarPersonas.setText("Cargar Personas");
-		bConsultarPersPertamos.setText("Persona con Prestamos");
-		bActividadesRecientes.setText("Cambios Recientes");
-		bRegistrarArticulos.setText("Registrar Articulos");
-		bConsultarArticulos.setText("Consultar Articulos");
-		bCargarArticulos.setText("Cargar Articulos");
-		bConsultarArtPrestados.setText("Articulos Prestados");
-		bAdelantarDia.setText("Adelantar Dia");
+		bRegistrarPersonas.setIcon(cambiarTamañoImagen("imagenes/libroRojo.png",50,100));
+		bConsultarPersonas.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bCargarPersonas.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bConsultarPersPertamos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bConfiguracion.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bRegistrarArticulos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bConsultarArticulos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bCargarArticulos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bConsultarArtPrestados.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bAdelantarDia.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
 		
 		bRegistrarPersonas.addMouseListener(this);
 		bConsultarPersonas.addMouseListener(this);
 		bCargarPersonas.addMouseListener(this);
 		bConsultarPersPertamos.addMouseListener(this);
-		bActividadesRecientes.addMouseListener(this);
+		bConfiguracion.addMouseListener(this);
 		bRegistrarArticulos.addMouseListener(this);
 		bConsultarArticulos.addMouseListener(this);
 		bCargarArticulos.addMouseListener(this);
@@ -122,7 +126,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 		vPrincipal.add(bConsultarPersonas);
 		vPrincipal.add(bCargarPersonas);
 		vPrincipal.add(bConsultarPersPertamos);
-		vPrincipal.add(bActividadesRecientes);
+		vPrincipal.add(bConfiguracion);
 		vPrincipal.add(bRegistrarArticulos);
 		vPrincipal.add(bConsultarArticulos);
 		vPrincipal.add(bCargarArticulos);
@@ -156,7 +160,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 			consultarArticulos.ventanaArticulos.setVisible(true);
 		}else if(e.getSource()==bCargarArticulos){
 			cargarArticulos.cargarCarpeta();
-		}else if(e.getSource()==bActividadesRecientes){
+		}else if(e.getSource()==bConfiguracion){
 			configuracion.vConfig.setVisible(true);
 		}else if(e.getSource()==bAdelantarDia){
 			fecha.setDia(1);

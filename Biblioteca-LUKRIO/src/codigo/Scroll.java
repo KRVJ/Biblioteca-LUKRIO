@@ -84,8 +84,6 @@ public class Scroll extends JPanel implements MouseListener{
         JScrollPane scrollpane2 =  getPanel(d2);
         this.add(scrollpane2);
         scrollpane2.setBounds(0,0,895,552);
-        this.setVisible(false);
-        this.setVisible(true);
     }
     public void leeArticulo(){
     	int largo=0;

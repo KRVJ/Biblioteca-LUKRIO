@@ -14,7 +14,7 @@ import persona.Familiar;
 public class ConsultarPersonas implements MouseListener{
 	JFrame ventanaConsultas=new JFrame();
 	static String tipoBusqueda="estudiantes";
-	private JButton buscarPersonas;
+	private JButton buscarPersonas,bEliminarPersona,bCambiarInformacion;
 	String[] columnas = {"Carnet","Nombre","Primer Apellido","Segundo Apellido","Correo",
 			"Teléfono","Institución"};
 	Object[][] info = {};
@@ -98,6 +98,16 @@ public class ConsultarPersonas implements MouseListener{
         buscarPersonas.setBounds(900,10,75,20);
         buscarPersonas.addMouseListener(this);
         ventanaConsultas.add(buscarPersonas);
+        
+        bEliminarPersona=new JButton("Eliminar Persona");
+        bEliminarPersona.setBounds(10,480,150,30);
+        bEliminarPersona.addMouseListener(this);
+        ventanaConsultas.add(bEliminarPersona);
+        
+        bCambiarInformacion=new JButton("Carbiar Informacion");
+        bCambiarInformacion.setBounds(830,480,150,30);
+        bCambiarInformacion.addMouseListener(this);
+        ventanaConsultas.add(bCambiarInformacion);
 	}
 	//Se reinician los valores principales de la vetana
 	public void refrescarVentana(){
@@ -250,7 +260,65 @@ public class ConsultarPersonas implements MouseListener{
 		if(e.getSource()==buscarPersonas){
 			reiniciaTabla();
 			refrescarBusqueda(tipoBusqueda);
-		}else if(seleccionarEstudiante.isSelected()){
+		}else if(e.getSource()==bEliminarPersona){
+			//Revisamos que este una linea seleccionada
+			if(table.getSelectedRow()!=-1){
+				//Obtenemos el carnet de la linea seleccionada
+				String carnet0=tabla.getDataVector().get(table.getSelectedRow()).toString().split(",")[0];
+				//Carnet0 tiene el carnet mas un "[" al inicio, usamos carnet para quitarselo
+				int carnet=Integer.parseInt(carnet0.substring(1));
+				for(int k=0;k<BibliotecaLUKRIO.personas.size();k++){
+					if(BibliotecaLUKRIO.personas.get(k).getCarnet()==carnet){
+						BibliotecaLUKRIO.personas.remove(k);
+						reiniciaTabla();
+						refrescarBusqueda(tipoBusqueda);
+						break;
+					}
+				}	
+			}
+		}else if(e.getSource()==bCambiarInformacion){
+			String carnet0,nombre,apellido1,apellido2,correo,telefono,adicional;
+			int carnet;
+			boolean telefonoBueno;
+			for(int k=0;k<tabla.getDataVector().size();k++){
+				telefonoBueno=true;
+				carnet0=tabla.getDataVector().get(k).toString().split(",")[0];
+				nombre=tabla.getDataVector().get(k).toString().split(",")[1];
+				apellido1=tabla.getDataVector().get(k).toString().split(",")[2];
+				apellido2=tabla.getDataVector().get(k).toString().split(",")[3];
+				correo=tabla.getDataVector().get(k).toString().split(",")[4];
+				telefono=tabla.getDataVector().get(k).toString().split(",")[5];
+				adicional=tabla.getDataVector().get(k).toString().split(",")[6];
+				carnet=Integer.parseInt(carnet0.substring(1));
+				try{
+					//Obtiene el telefono con un espacio al inicio
+					Integer.parseInt(telefono.substring(1,telefono.length()));
+				}catch(Exception exception){
+					telefonoBueno=false;
+				}
+				if(telefono.substring(1, telefono.length()).length()!=8){
+					telefonoBueno=false;
+				}
+				for(int j=0;j<BibliotecaLUKRIO.personas.size();j++){
+					if(BibliotecaLUKRIO.personas.get(j).getCarnet()==carnet){
+						if(telefonoBueno && nombre.equals(" ")==false && apellido1.equals(" ")==false &&
+								apellido2.equals(" ")==false && correo.equals(" ")==false){
+							System.out.println(nombre);
+							BibliotecaLUKRIO.personas.get(j).setNombre(nombre.substring(1,nombre.length()));
+							System.out.println(BibliotecaLUKRIO.personas.get(j).getNombre());
+							BibliotecaLUKRIO.personas.get(j).setApellido1(apellido1.substring(1,apellido1.length()));
+							BibliotecaLUKRIO.personas.get(j).setApellido2(apellido2.substring(1,apellido2.length()));
+							BibliotecaLUKRIO.personas.get(j).setCorreo(correo.substring(1,correo.length()));
+							BibliotecaLUKRIO.personas.get(j).setTelefono(telefono.substring(1, telefono.length()));
+						break;
+						}
+					}
+				}
+			}
+			reiniciaTabla();
+			refrescarBusqueda(tipoBusqueda);
+		}
+		else if(seleccionarEstudiante.isSelected()){
 			entradaEspecial.setText("Institución");
 			tipoBusqueda="estudiantes";
 		}

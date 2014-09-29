@@ -67,24 +67,10 @@ public class CargarPersonas {
 						}
 						boolean existe=false;
 						if(carnet!=0){
+							//Verificó que el carnet no exista Carnet
 							for(int k=0;k<BibliotecaLUKRIO.personas.size();k++){
 								if(carnet==BibliotecaLUKRIO.personas.get(k).getCarnet()){
 									existe=true;
-									break;
-								}
-							}
-						}else{
-							boolean encontreCarnet;
-							while(true){
-								encontreCarnet=true;
-								for(int k=0;k<BibliotecaLUKRIO.personas.size();k++){
-									if(BibliotecaLUKRIO.carnet==BibliotecaLUKRIO.personas.get(k).getCarnet()){
-										BibliotecaLUKRIO.carnet++;
-										encontreCarnet=false;
-										break;
-									}
-								}if(encontreCarnet=true){
-									carnet=BibliotecaLUKRIO.carnet;
 									break;
 								}
 							}
@@ -93,22 +79,39 @@ public class CargarPersonas {
 							//persona ya registrada con este num de carnet	
 						}else{
 							if(FormularioPersona.compruebaTelefono(cInformacion[4]) && largoCorrecto){
-								if(cInformacion[0].equals("estudiante")){
-									personasRegistradas++;
-									BibliotecaLUKRIO.personas.add(new Estudiante(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
-						
-											cInformacion[5],cInformacion[6],carnet));
-									BibliotecaLUKRIO.carnet++;
-								}else if(cInformacion[0].equals("colega")){
-									personasRegistradas++;
-									BibliotecaLUKRIO.personas.add(new Colega(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
-											cInformacion[5],cInformacion[6],carnet));
-									BibliotecaLUKRIO.carnet++;
-								}else if(cInformacion[0].equals("familiar")){
-									personasRegistradas++;
-									BibliotecaLUKRIO.personas.add(new Familiar(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
-											cInformacion[5],cInformacion[6],carnet));
-									BibliotecaLUKRIO.carnet++;
+								if(cInformacion[0].equals("estudiante") || cInformacion[0].equals("colega") ||
+										cInformacion[0].equals("familiar")){
+									if(carnet==0){
+										boolean encontreCarnet;
+										while(true){
+											encontreCarnet=true;
+											for(int k=0;k<BibliotecaLUKRIO.personas.size();k++){
+												if(BibliotecaLUKRIO.carnet==BibliotecaLUKRIO.personas.get(k).getCarnet()){
+													BibliotecaLUKRIO.carnet++;
+													encontreCarnet=false;
+													break;
+												}
+											}if(encontreCarnet==true){
+												System.out.println(carnet);
+												carnet=BibliotecaLUKRIO.carnet;
+												break;
+											}
+										}
+									}
+									if(cInformacion[0].equals("estudiante")){
+										personasRegistradas++;
+										BibliotecaLUKRIO.personas.add(new Estudiante(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
+							
+												cInformacion[5],cInformacion[6],carnet));
+									}else if(cInformacion[0].equals("colega")){
+										personasRegistradas++;
+										BibliotecaLUKRIO.personas.add(new Colega(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
+												cInformacion[5],cInformacion[6],carnet));
+									}else if(cInformacion[0].equals("familiar")){
+										personasRegistradas++;
+										BibliotecaLUKRIO.personas.add(new Familiar(cInformacion[1],cInformacion[2],cInformacion[3],cInformacion[4],
+												cInformacion[5],cInformacion[6],carnet));
+									}
 								}else{
 									JOptionPane.showMessageDialog(null, "Problema en el archivo: "+direccion+" En la linea: "+numLinea+" Con el tipo de persona");
 								}
@@ -128,7 +131,6 @@ public class CargarPersonas {
 			JOptionPane.showMessageDialog(null,"Se registraron "+personasRegistradas+" correctamente.");
 		}
 		}catch(Exception exception){
-			System.out.println("Cancelar");
 		}
      }
 }
