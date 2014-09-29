@@ -104,7 +104,7 @@ public class ConsultarPersonas implements MouseListener{
         bEliminarPersona.addMouseListener(this);
         ventanaConsultas.add(bEliminarPersona);
         
-        bCambiarInformacion=new JButton("Carbiar Informacion");
+        bCambiarInformacion=new JButton("Cambiar Informacion");
         bCambiarInformacion.setBounds(830,480,150,30);
         bCambiarInformacion.addMouseListener(this);
         ventanaConsultas.add(bCambiarInformacion);

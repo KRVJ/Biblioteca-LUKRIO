@@ -115,7 +115,7 @@ public class Configuracion implements ActionListener {
         col.setBounds(50,150,150,30);
         col.setFont(fuente);
         est.setBounds(50,220,150,30);
-       est.setFont(fuente);
+        est.setFont(fuente);
         fam.setBounds(50, 290, 150,30);
         fam.setFont(fuente);
         
@@ -157,6 +157,7 @@ public class Configuracion implements ActionListener {
         CambiarMasPrestados.addActionListener(this);
         manual.addActionListener(this);
         aceptar.addActionListener(this);
+        atras.addActionListener(this);
         // agregar widgets a la ventana
         //agrego imagenes
         am.setIcon(cargarImagen("imagenes/amarillo.png",80,80));
@@ -189,7 +190,10 @@ public class Configuracion implements ActionListener {
         vd.setVisible(false);
         imageTop.setVisible(false);
         imagePila.setVisible(false);
-        
+
+        ImagenFondo fondo = new ImagenFondo(BibliotecaLUKRIO.cambiarTamañoImagen("imagenes/vConfiguracion.jpg",720,430).getImage());
+        vConfig.getContentPane().add(fondo);
+
         vConfig.setVisible(false);
 	}
 	// define las dimensiones de las imagenes que son colocadas en los botones
@@ -335,6 +339,7 @@ public class Configuracion implements ActionListener {
 		}
 		else if(e.getSource()==atras){
 			//regresar
+			vConfig.setVisible(false);
 		}
 		
 	   

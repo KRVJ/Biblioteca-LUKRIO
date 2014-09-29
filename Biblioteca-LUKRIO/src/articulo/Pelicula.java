@@ -3,17 +3,17 @@ package articulo;
 import javax.swing.ImageIcon;
 
 public class Pelicula extends Articulo{
-	String editorial,edicion;
+	String genero,categoria;
 	int numeroLibro;
-	public Pelicula(String lTitulo,String lAutor,String lEditorial, String lEdicion, ImageIcon lPortada,int lCalificacion,
-			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta,int carnet,String tipoPersona){
+	public Pelicula(String pTitulo,String pAutor,String pGenero, String pCategoria, ImageIcon pPortada,int pCalificacion,
+			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String pAlerta,int carnet,String tipoPersona){
 		setPrestado(prestado);
-		setTitulo(lTitulo);
-		setAutorProductor(lAutor);
-		setCalificacion(lCalificacion);
-		setEditorial(lEditorial);
-		setEdicion(lEdicion);
-		setPortada(lPortada);
+		setTitulo(pTitulo);
+		setAutorProductor(pAutor);
+		setCalificacion(pCalificacion);
+		setGenero(pGenero);
+		setCategoria(pCategoria);
+		setPortada(pPortada);
 		setNumero(numero);
 		creaBotones();
 		setTipoPersona(tipoPersona);
@@ -22,27 +22,27 @@ public class Pelicula extends Articulo{
 		super.fecha.setDia(dia);
 		setNumero(carnet);
 		setDireccion(lugar);
-		setAlerta(lalerta);
+		setAlerta(pAlerta);
 		setTipo("pelicula");
 	}
-	public void setEditorial(String editorial){
-		this.editorial=editorial;
+	public void setGenero(String genero){
+		this.genero=genero;
 	}
-	public void setEdicion(String edicion){
-		this.edicion=edicion;
+	public void setCategoria(String categoria){
+		this.categoria=categoria;
 	}
-	public String getEditorial(){
-		return editorial;
+	public String getGenero(){
+		return genero;
 	}
-	public String getEdicion(){
-		return edicion;
+	public String getCategoria(){
+		return categoria;
 	}
 	public String toString(){
 		String msg;
 		msg="Titulo: "+getTitulo()+"\n"+"\n";
 		msg+="Productor: "+getAutorProductor()+"\n"+"\n";
-		msg+="Editorial: "+getEditorial()+"\n"+"\n";
-		msg+="Edicióc: "+getEdicion()+"\n"+"\n";
+		msg+="Genero: "+getGenero()+"\n"+"\n";
+		msg+="categoría: "+getCategoria()+"\n"+"\n";
 		msg+="Calificación: "+getCalificacion();
 		return msg;
 	}

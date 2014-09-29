@@ -42,6 +42,8 @@ public class FormularioPersona implements MouseListener{
 		//ImageIcon imagen = new ImageIcon(formulario.getClass().getResource("/imagenes/fondoFormulario.jpg")); //Localidad dentro del programa
 		//ImagenFondo fondo = new ImagenFondo(imagen.getImage());
 		//formulario.getContentPane().add(fondo);
+		ImagenFondo fondo = new ImagenFondo(BibliotecaLUKRIO.cambiarTamañoImagen("imagenes/vRegistrarPersonas.jpg",400,390).getImage());
+		formulario.getContentPane().add(fondo);
 		formulario.setVisible(false);   //Oculta la ventana
 	}
 	//Crea toda la interfaz del formulario
@@ -82,6 +84,12 @@ public class FormularioPersona implements MouseListener{
         labelCorreo.setBounds(10,170,200,20);
         formulario.add(labelCorreo);
         
+        entradaNombre.setOpaque(false);
+        entradaApellido1.setOpaque(false);
+        entradaApellido2.setOpaque(false);
+        entradaTelefono.setOpaque(false);
+        entradaCorreo.setOpaque(false);
+        
         ButtonGroup selector = new ButtonGroup();  //Grupo para el RadioButton
         
         seleccionarEstudiante.setActionCommand("Estudiante");
@@ -100,6 +108,10 @@ public class FormularioPersona implements MouseListener{
         seleccionarFamiliar.setBounds(250,210,100,20);
         formulario.add(seleccionarFamiliar);
         
+        seleccionarEstudiante.setOpaque(false);
+        seleccionarColega.setOpaque(false);
+        seleccionarFamiliar.setOpaque(false);
+        
         selector.add(seleccionarEstudiante);
         selector.add(seleccionarColega);
         selector.add(seleccionarFamiliar);
@@ -109,6 +121,7 @@ public class FormularioPersona implements MouseListener{
         labelEspecial=new JLabel("Institución: ");
         labelEspecial.setBounds(10,250,200,20);
         formulario.add(labelEspecial);
+        entradaEspecial.setOpaque(false);
 	}
 	//Volver a poner textos originales al formulario
 	public void refrescarFormulario(){

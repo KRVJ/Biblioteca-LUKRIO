@@ -13,7 +13,7 @@ public class Scroll extends JPanel implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	JButton bBuscar;
 	JRadioButton selecLibros,selecRevistas,selecPeliculas,selecTodos;
-	JTextField entradaTitulo=new JTextField("Titulo");
+	JTextField entradaTitulo=new JTextField("Título");
 	JTextField entradaAutor=new JTextField("Autor");
 	JTextField entradaEditorial=new JTextField("Editorial");
 	JTextField entradaEdicion=new JTextField("Edición");
@@ -25,7 +25,7 @@ public class Scroll extends JPanel implements MouseListener{
     	bBuscar=new JButton("Buscar");
     	selecLibros=new JRadioButton("Libros");
 		selecRevistas= new JRadioButton("Revistas");
-		selecPeliculas= new JRadioButton("Peliculas");
+		selecPeliculas= new JRadioButton("Peículas");
 		selecTodos= new JRadioButton("Todos");
         this.setLayout(null);
         this.tipoBusqueda=tipoBusqueda;
@@ -88,6 +88,21 @@ public class Scroll extends JPanel implements MouseListener{
         scrollpane2.setBounds(0,0,895,552);
     }
     public void leeArticulo(){
+    	boolean titulo=false,autor=false,especial1=false,especial2=false;
+    	if(entradaTitulo.getText().equals("")==false && entradaTitulo.getText().equals("Título")==false){
+    		titulo=true;
+    	}
+    	if(entradaAutor.getText().equals("")==false && entradaAutor.getText().equals("Autor")==false){
+    		autor=true;
+    	}
+    	if(entradaEditorial.getText().equals("")==false && entradaEditorial.getText().equals("Editorial")==false &&
+    			entradaEditorial.getText().equals("Género")==false && entradaEditorial.getText().equals("Sección")==false){
+    		especial1=true;
+    	}
+    	if(entradaEdicion.getText().equals("")==false && entradaEdicion.getText().equals("Edición")==false &&
+    			entradaEdicion.getText().equals("categoría")==false && entradaEdicion.getText().equals("Tipo")==false){
+    		especial2=true;
+    	}
     	int largo=0;
     	for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
     		if(tipo!="todos"){
@@ -101,47 +116,58 @@ public class Scroll extends JPanel implements MouseListener{
     	}
     	setDimension(largo);
     	int x=10,y=50;
+    	boolean imprimo;
     	if(tipo!="todos"){
+    		
 	    	for(int i=0;i<BibliotecaLUKRIO.articulos.size();i++){
+	    		imprimo=true;
 	    		if(BibliotecaLUKRIO.articulos.get(i).getTipo()==tipo){
-	    			if(tipoBusqueda=="normal"){
-		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
-		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
-		    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
-		    			if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
-		    				anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString()+"Carnet: "+BibliotecaLUKRIO.articulos.get(i).getNumero(),x+500,y,12);
-		    				ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
-		    				Image icono = icon.getImage();  //Se obtiene la imagen del icono
-		    				ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(100,100,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
-		    				anadirPortada(iconoEscalado,x+650,y);
-		    			}else{
-		    				anadirJTextArea("Sin Prestar",x+500,y+70,16);
+	    			if(titulo && entradaTitulo.getText().equals(BibliotecaLUKRIO.articulos.get(i).getTitulo())==false){
+	    				imprimo=false;
+	    			}
+	    			if(autor && entradaAutor.getText().equals(BibliotecaLUKRIO.articulos.get(i).getAutorProductor())==false){
+	    				imprimo=false;
+	    			}
+	    			if(imprimo){
+		    			if(tipoBusqueda=="normal"){
+			    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
+			    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
+			    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
+			    			if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
+			    				anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString()+"Carnet: "+BibliotecaLUKRIO.articulos.get(i).getNumero(),x+500,y,12);
+			    				ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
+			    				Image icono = icon.getImage();  //Se obtiene la imagen del icono
+			    				ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(100,100,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
+			    				anadirPortada(iconoEscalado,x+650,y);
+			    			}else{
+			    				anadirJTextArea("Sin Prestar",x+500,y+70,16);
+			    			}
+			    			if(tipo=="libro"){
+			    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+			    			}else if(tipo=="revista"){
+			    				anadirJTextArea(((Revista)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+			    			}else if(tipo=="pelicula"){
+			    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+			    			}
+			    			y+=210;
+		    			}else if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
+		    				anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
+			    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
+			    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
+			    			anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString()+"Carnet: "+BibliotecaLUKRIO.articulos.get(i).getNumero(),x+500,y,12);
+			    			ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
+			    			Image icono = icon.getImage();  //Se obtiene la imagen del icono
+			    			ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(100,100,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
+			   				anadirPortada(iconoEscalado,x+650,y);
+			    			if(tipo=="libro"){
+			    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+			    			}else if(tipo=="revista"){
+			    				anadirJTextArea(((Revista)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+			    			}else if(tipo=="pelicula"){
+			    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
+			    			}
+			    			y+=210;
 		    			}
-		    			if(tipo=="libro"){
-		    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
-		    			}else if(tipo=="revista"){
-		    				anadirJTextArea(((Revista)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
-		    			}else if(tipo=="pelicula"){
-		    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
-		    			}
-		    			y+=210;
-	    			}else if(BibliotecaLUKRIO.articulos.get(i).getPrestado()){
-	    				anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonPrestado(),x,y+170);
-		    			anadirBoton(BibliotecaLUKRIO.articulos.get(i).getBotonEliminar(),x+110,y+170);
-		    			anadirPortada(BibliotecaLUKRIO.articulos.get(i).getPortada(),x+250,y);
-		    			anadirJTextArea(BibliotecaLUKRIO.articulos.get(i).fecha.toString()+"Carnet: "+BibliotecaLUKRIO.articulos.get(i).getNumero(),x+500,y,12);
-		    			ImageIcon icon=new ImageIcon("imagenes/"+BibliotecaLUKRIO.articulos.get(i).getAlerta()+".png");
-		    			Image icono = icon.getImage();  //Se obtiene la imagen del icono
-		    			ImageIcon iconoEscalado = new ImageIcon (icono.getScaledInstance(100,100,Image.SCALE_SMOOTH)); //Cambiamos el tamaño de la imagen
-		   				anadirPortada(iconoEscalado,x+650,y);
-		    			if(tipo=="libro"){
-		    				anadirJTextArea(((Libro)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
-		    			}else if(tipo=="revista"){
-		    				anadirJTextArea(((Revista)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
-		    			}else if(tipo=="pelicula"){
-		    				anadirJTextArea(((Pelicula)BibliotecaLUKRIO.articulos.get(i)).toString(),x,y,12);
-		    			}
-		    			y+=210;
 	    			}
 	    		}
 	    	}
@@ -242,12 +268,20 @@ public class Scroll extends JPanel implements MouseListener{
 			leeArticulo();
 		}else if(selecLibros.isSelected()){
 			tipo="libro";
+			entradaEditorial.setText("Editorial");
+			entradaEdicion.setText("Edición");
 		}else if(selecRevistas.isSelected()){
 			tipo="revista";
+			entradaEditorial.setText("Sección");
+			entradaEdicion.setText("Tipo");
 		}else if(selecPeliculas.isSelected()){
 			tipo="pelicula";
+			entradaEditorial.setText("Género");
+			entradaEdicion.setText("Categoría");
 		}else if(selecTodos.isSelected()){
 			tipo="todos";
+			entradaEditorial.setText("Primera Especificación");
+			entradaEdicion.setText("Segunda Especificación");
 		}
 	}
 	@Override

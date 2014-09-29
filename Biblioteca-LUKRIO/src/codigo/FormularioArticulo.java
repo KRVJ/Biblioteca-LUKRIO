@@ -59,6 +59,8 @@ public class FormularioArticulo implements MouseListener {
 		vRegistroLibros.setLocation(450,145);  //localizacion de ventana
 		vRegistroLibros.setResizable(false);  //Minimizar ventana
 		crearInterfaz();
+		ImagenFondo fondo = new ImagenFondo(BibliotecaLUKRIO.cambiarTamañoImagen("imagenes/vRegistrarArticulos.jpg",550,350).getImage());
+		vRegistroLibros.getContentPane().add(fondo);
 		vRegistroLibros.setVisible(false);   //Oculta la ventana
 	}
 	public void crearInterfaz(){
@@ -105,6 +107,11 @@ public class FormularioArticulo implements MouseListener {
         labelNumeroCalificacion.setBounds(100,190,210,20);
         vRegistroLibros.add(labelNumeroCalificacion);
         
+        entradaTitulo.setOpaque(false);
+        entradaAutor.setOpaque(false);
+        entradaEditorial.setOpaque(false);
+        entradaEdicion.setOpaque(false);
+        
         ButtonGroup selecTipo = new ButtonGroup();  //Grupo para el RadioButton
         
         seleccionarLibro.setActionCommand("Libro");
@@ -123,6 +130,10 @@ public class FormularioArticulo implements MouseListener {
         seleccionarRevista.addMouseListener(this); 
         seleccionarRevista.setBounds(210,230,100,20);
         vRegistroLibros.add(seleccionarRevista);
+        
+        seleccionarLibro.setOpaque(false);
+        seleccionarPelicula.setOpaque(false);
+        seleccionarRevista.setOpaque(false);
         
         selecTipo.add(seleccionarLibro);
         selecTipo.add(seleccionarPelicula);
@@ -161,6 +172,12 @@ public class FormularioArticulo implements MouseListener {
         selector.add(calificacion3);
         selector.add(calificacion4);
         selector.add(calificacion5);
+        
+        calificacion1.setOpaque(false);
+        calificacion2.setOpaque(false);
+        calificacion3.setOpaque(false);
+        calificacion4.setOpaque(false);
+        calificacion5.setOpaque(false);
         
         //http://docs.oracle.com/javase/tutorial/uiswing/components/border.html
         
@@ -203,8 +220,11 @@ public class FormularioArticulo implements MouseListener {
 	public void registrarLibro(){
 		if(entradaTitulo.getText().equals("Introduce el título")==false && entradaTitulo.getText().equals("")==false
 		&& entradaAutor.getText().equals("Introduce el autor")==false && entradaAutor.getText().equals("")==false
-		&& entradaEditorial.getText().equals("Introduce el editorial")==false && entradaEditorial.getText().equals("")==false
-		&& entradaEdicion.getText().equals("Introduce la edición")==false && entradaEdicion.getText().equals("")==false && label.getIcon()!=null){
+		&& entradaEditorial.getText().equals("Introduce el editorial")==false && entradaEditorial.getText().equals("")==false 
+		&& entradaEditorial.getText().equals("Introduce el género")==false && entradaEditorial.getText().equals("Introduce la sección")==false
+		&& entradaEdicion.getText().equals("Introduce la edición")==false && entradaEdicion.getText().equals("")==false 
+		&& entradaEdicion.getText().equals("Introduce el tipo")==false && entradaEdicion.getText().equals("Introduce la categoría")==false &&
+		label.getIcon()!=null){
 			if(tipoSeleccion=="libro"){
 				BibliotecaLUKRIO.articulos.add(new Libro(entradaTitulo.getText(),entradaAutor.getText(),
 						entradaEditorial.getText(),entradaEdicion.getText(),portada,calificacion,
@@ -252,16 +272,28 @@ public class FormularioArticulo implements MouseListener {
 		}if(seleccionarLibro.isSelected()){
 			bRegistrarArticulo.setText("Registrar Libro");
 			tipoSeleccion="libro";
+			entradaEditorial.setText("Introduce el editorial");
+			labelEditorial.setText("Editorial: ");
+			entradaEdicion.setText("Introduce la edición");
+			labelEdicion.setText("Edición: ");
 			//refrescarSeleccion("estudiante");
 		}
 		else if(seleccionarPelicula.isSelected()){
 			bRegistrarArticulo.setText("Registrar Película");
 			tipoSeleccion="pelicula";
+			entradaEditorial.setText("Introduce el género");
+			labelEditorial.setText("Género: ");
+			entradaEdicion.setText("Introduce la categoría");
+			labelEdicion.setText("categoría: ");
 			//refrescarSeleccion("colega");
 		}
 		else if(seleccionarRevista.isSelected()){
 			bRegistrarArticulo.setText("Registrar Revista");
 			tipoSeleccion="revista";
+			entradaEditorial.setText("Introduce la sección");
+			labelEditorial.setText("Sección: ");
+			entradaEdicion.setText("Introduce el tipo");
+			labelEdicion.setText("Tipo: ");
 			//refrescarSeleccion("familiar");
 		}
 	}

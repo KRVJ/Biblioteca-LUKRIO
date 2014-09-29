@@ -42,9 +42,9 @@ public class Libro extends Articulo{
 	public String toString(){
 		String msg;
 		msg="Titulo: "+getTitulo()+"\n"+"\n";
-		msg+="Productor: "+getAutorProductor()+"\n"+"\n";
+		msg+="Autor: "+getAutorProductor()+"\n"+"\n";
 		msg+="Editorial: "+getEditorial()+"\n"+"\n";
-		msg+="Edicióc: "+getEdicion()+"\n"+"\n";
+		msg+="Edición: "+getEdicion()+"\n"+"\n";
 		msg+="Calificación: "+getCalificacion();
 		return msg;
 	}

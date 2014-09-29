@@ -4,16 +4,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Revista extends Articulo{
-	String editorial,edicion;
+	String seccion,tipoRevista;
 	int numeroRevista;
-	public Revista(String rTitulo,String rAutor,String rEditorial, String rEdicion, ImageIcon rPortada,int rCalificacion,
+	public Revista(String rTitulo,String rAutor,String rSeccion, String rTipo, ImageIcon rPortada,int rCalificacion,
 			int numero,String lugar,boolean prestado,int ano,int mes,int dia, String lalerta,int carnet,String tipoPersona){
 		setPrestado(prestado);
 		setTitulo(rTitulo);
 		setAutorProductor(rAutor);
 		setCalificacion(rCalificacion);
-		setEditorial(rEditorial);
-		setEdicion(rEdicion);
+		setSeccion(rSeccion);
+		setTipoRevista(rTipo);
 		setPortada(rPortada);
 		setNumero(numero);
 		creaBotones();
@@ -26,24 +26,24 @@ public class Revista extends Articulo{
 		setAlerta(lalerta);
 		setTipo("revista");
 	}
-	public void setEditorial(String editorial){
-		this.editorial=editorial;
+	public void setSeccion(String seccion){
+		this.seccion=seccion;
 	}
-	public void setEdicion(String edicion){
-		this.edicion=edicion;
+	public void setTipoRevista(String tipo){
+		this.tipoRevista=tipoRevista;
 	}
-	public String getEditorial(){
-		return editorial;
+	public String getSeccion(){
+		return seccion;
 	}
-	public String getEdicion(){
-		return edicion;
+	public String getTipoRevista(){
+		return tipoRevista;
 	}
 	public String toString(){
 		String msg;
 		msg="Titulo: "+getTitulo()+"\n"+"\n";
 		msg+="Productor: "+getAutorProductor()+"\n"+"\n";
-		msg+="Editorial: "+getEditorial()+"\n"+"\n";
-		msg+="Edicióc: "+getEdicion()+"\n"+"\n";
+		msg+="Sección: "+getSeccion()+"\n"+"\n";
+		msg+="Tipo: "+getTipoRevista()+"\n"+"\n";
 		msg+="Calificación: "+getCalificacion();
 		return msg;
 	}
