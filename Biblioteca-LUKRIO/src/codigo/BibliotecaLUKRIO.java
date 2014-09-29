@@ -42,25 +42,30 @@ public class BibliotecaLUKRIO implements MouseListener {
 	FormularioArticulo registrarArticulo = new FormularioArticulo();
 	Configuracion configuracion = new Configuracion();
 	public static ConsultarArticulos consultarArticulos = new ConsultarArticulos();
+	public static ConsultarArticulosPrestados consultarArticulosPrestados = new ConsultarArticulosPrestados();
 	public static Fecha fecha = new Fecha();
 	public static Mail correo= new Mail();
 	
-	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPertamos,bConfiguracion,
+	JButton bRegistrarPersonas,bConsultarPersonas,bCargarPersonas,bConsultarPersPrestamos,bConfiguracion,
 	bRegistrarArticulos,bConsultarArticulos,bCargarArticulos,bConsultarArtPrestados,bAdelantarDia;
 	BibliotecaLUKRIO(){
 		consultarArticulos.scroll.leeArticulo();
 		consultarArticulos.scroll.creaMenu();
 		consultarArticulos.ventanaArticulos.setVisible(false);
 		
+		consultarArticulosPrestados.scroll.leeArticulo();
+		consultarArticulosPrestados.scroll.creaMenu();
+		consultarArticulosPrestados.ventanaArticulosPrestados.setVisible(false);
+		
 		vPrincipal=new JFrame();
-		vPrincipal.setBounds(400,100,620,380);
+		vPrincipal.setBounds(400,100,720,480);
 		vPrincipal.setLayout(null);
 		vPrincipal.setTitle("Biblioteca LUKRIO");
         creaBotones();
         
         fecha.fechaInicial();
         
-        ImagenFondo fondo = new ImagenFondo(cambiarTamañoImagen("imagenes/fondo.jpg",620,380).getImage());
+        ImagenFondo fondo = new ImagenFondo(cambiarTamañoImagen("imagenes/fondo.jpg",720,480).getImage());
 		vPrincipal.getContentPane().add(fondo);
 		vPrincipal.setResizable(false);
         vPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +86,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 		bRegistrarPersonas=new JButton();
 		bConsultarPersonas=new JButton();
 		bCargarPersonas=new JButton();
-		bConsultarPersPertamos=new JButton();
+		bConsultarPersPrestamos=new JButton();
 		bConfiguracion=new JButton();
 		bRegistrarArticulos=new JButton();
 		bConsultarArticulos=new JButton();
@@ -89,32 +94,32 @@ public class BibliotecaLUKRIO implements MouseListener {
 		bConsultarArtPrestados=new JButton();
 		bAdelantarDia=new JButton();
 		
-		bRegistrarPersonas.setBounds(5,5,50,60);
-		bConsultarPersonas.setBounds(5,75,50,60);
-		bCargarPersonas.setBounds(5,145,50,60);
-		bConsultarPersPertamos.setBounds(5,215,50,60);
-		bConfiguracion.setBounds(5,285,50,60);
-		bRegistrarArticulos.setBounds(560,5,50,60);
-		bConsultarArticulos.setBounds(560,75,50,60);
-		bCargarArticulos.setBounds(560,145,50,60);
-		bConsultarArtPrestados.setBounds(560,215,50,60);
-		bAdelantarDia.setBounds(560,285,50,60);
+		bRegistrarPersonas.setBounds(5,5,70,80);
+		bConsultarPersonas.setBounds(5,95,70,80);
+		bCargarPersonas.setBounds(5,185,70,80);
+		bConfiguracion.setBounds(5,275,70,80);
+		bConsultarPersPrestamos.setBounds(5,365,70,80);
+		bRegistrarArticulos.setBounds(635,5,70,80);
+		bConsultarArticulos.setBounds(635,95,70,80);
+		bCargarArticulos.setBounds(635,185,70,80);
+		bConsultarArtPrestados.setBounds(635,275,70,80);
+		bAdelantarDia.setBounds(635,365,70,80);
 		
-		bRegistrarPersonas.setIcon(cambiarTamañoImagen("imagenes/libroRojo.png",50,100));
-		bConsultarPersonas.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bCargarPersonas.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bConsultarPersPertamos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bConfiguracion.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bRegistrarArticulos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bConsultarArticulos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bCargarArticulos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bConsultarArtPrestados.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
-		bAdelantarDia.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas",108,58));
+		bRegistrarPersonas.setIcon(cambiarTamañoImagen("imagenes/bRegistrarPersonas.png",80,90));
+		bConsultarPersonas.setIcon(cambiarTamañoImagen("imagenes/bConsultarPersonas.png",80,90));
+		bCargarPersonas.setIcon(cambiarTamañoImagen("imagenes/bCargarPersonas.png",80,90));
+		bConsultarPersPrestamos.setIcon(cambiarTamañoImagen("imagenes/bConsultarPersPrestamos.png",80,90));
+		bConfiguracion.setIcon(cambiarTamañoImagen("imagenes/bConfiguracion.png",80,90));
+		bRegistrarArticulos.setIcon(cambiarTamañoImagen("imagenes/bRegistrarArticulos.png",80,90));
+		bConsultarArticulos.setIcon(cambiarTamañoImagen("imagenes/bConsultarArticulos.png",80,90));
+		bCargarArticulos.setIcon(cambiarTamañoImagen("imagenes/bCargarArticulos.png",80,90));
+		bConsultarArtPrestados.setIcon(cambiarTamañoImagen("imagenes/bConsultarArtPrestados.png",80,90));
+		bAdelantarDia.setIcon(cambiarTamañoImagen("imagenes/bAdelantarDia.png",80,90));
 		
 		bRegistrarPersonas.addMouseListener(this);
 		bConsultarPersonas.addMouseListener(this);
 		bCargarPersonas.addMouseListener(this);
-		bConsultarPersPertamos.addMouseListener(this);
+		bConsultarPersPrestamos.addMouseListener(this);
 		bConfiguracion.addMouseListener(this);
 		bRegistrarArticulos.addMouseListener(this);
 		bConsultarArticulos.addMouseListener(this);
@@ -125,7 +130,7 @@ public class BibliotecaLUKRIO implements MouseListener {
 		vPrincipal.add(bRegistrarPersonas);
 		vPrincipal.add(bConsultarPersonas);
 		vPrincipal.add(bCargarPersonas);
-		vPrincipal.add(bConsultarPersPertamos);
+		vPrincipal.add(bConsultarPersPrestamos);
 		vPrincipal.add(bConfiguracion);
 		vPrincipal.add(bRegistrarArticulos);
 		vPrincipal.add(bConsultarArticulos);
@@ -166,6 +171,8 @@ public class BibliotecaLUKRIO implements MouseListener {
 			fecha.setDia(1);
 			enviarCorreos();
 			consultarArticulos.scroll.leeArticulo();
+		}else if(e.getSource()==bConsultarArtPrestados){
+			consultarArticulosPrestados.ventanaArticulosPrestados.setVisible(true);
 		}
 	}
 	@Override

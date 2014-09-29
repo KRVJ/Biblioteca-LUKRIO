@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class ConsultarArticulos{
 	public static JFrame ventanaArticulos;
-	public static Scroll scroll = new Scroll();
+	public static Scroll scroll = new Scroll("normal");
 	ConsultarArticulos(){
 		ventanaArticulos=new JFrame();
 		ventanaArticulos.setTitle("Consultar Árticulos");  //Titulo de ventana
